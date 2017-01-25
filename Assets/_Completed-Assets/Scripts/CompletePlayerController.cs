@@ -6,7 +6,9 @@ using UnityEngine.UI;
 
 public class CompletePlayerController : MonoBehaviour {
 
-	public float speed;				//Floating point variable to store the player's movement speed.
+    public float walkSpeed = 1; // player left right walk speed
+
+    public float speed;				//Floating point variable to store the player's movement speed.
 	public Text countText;			//Store a reference to the UI Text component which will display the number of pickups collected.
 	public Text winText;			//Store a reference to the UI Text component which will display the 'You win' message.
     public AudioSource footsteps;  //Store a reference to the AudioSource attached to the player for footsteps
@@ -21,12 +23,33 @@ public class CompletePlayerController : MonoBehaviour {
     private bool movingUp;          //Whether or not the player is currently moving up
     private bool movingDown;        //Whether or not the player is currently moving down
 
+    Animator animator;
+
+    //some flags to check when certain animations are playing
+    bool _isPlaying_walk_left = false;
+    bool _isPlaying_walk_right = false;
+    bool _isPlaying_walk_up = false;
+    bool _isPlaying_walk_down = false;
+   
+    //animation states - the values in the animator conditions
+    const int STATE_IDLE = 0;
+    const int STATE_WALK_LEFT = 1;
+    const int STATE_WALK_RIGHT = 2;
+    const int STATE_WALK_UP = 3;
+    const int STATE_WALK_DOWN = 4;
+
+    string _currentDirection = "left";
+    int _currentAnimationState = STATE_IDLE;
+
 
     // initialization
     void Start()
 	{
-		//store reference to the Rigidbody2D component so that we can access it.
-		rb2d = GetComponent<Rigidbody2D> ();
+        //define the animator attached to the player
+        animator = this.GetComponent<Animator>();
+
+        //store reference to the Rigidbody2D component so that we can access it.
+        rb2d = GetComponent<Rigidbody2D> ();
 
         //Initialize item pickup count to zero.
         count = 0;
@@ -85,23 +108,29 @@ public class CompletePlayerController : MonoBehaviour {
             moving = true;
             if (moveHorizontal < 0) // moving left
             {
-                print("Moving left");
                 movingLeft = true;
+                changeState(STATE_WALK_LEFT);
             }
             if (moveHorizontal > 0) // moving right
             {
-                print("Moving right");
                 movingRight = true;
+                changeState(STATE_WALK_RIGHT);
             }
             if (moveVertical > 0) // moving up
             {
                 movingUp = true;
-                print("Moving up");
+                if (! (movingLeft || movingRight)) // don't animate down if also moving left/right
+                {
+                    changeState(STATE_WALK_UP);
+                }     
             }
             if (moveVertical < 0) // moving down
             {
                 movingDown = true;
-                print("Moving down");
+                if (!(movingLeft || movingRight)) // don't animate down if also moving left/right
+                {
+                    changeState(STATE_WALK_DOWN);
+                }
             }
         }
     }
@@ -123,6 +152,43 @@ public class CompletePlayerController : MonoBehaviour {
     private void playerStoppedMoving()
     {
         footsteps.Stop();
+        changeState(STATE_IDLE);
+    }
+
+    //--------------------------------------
+    // Change the players animation state
+    //--------------------------------------
+    void changeState(int state)
+    {
+
+        if (_currentAnimationState == state)
+            return;
+
+        switch (state)
+        {
+
+            case STATE_WALK_LEFT:
+                animator.SetInteger("state", STATE_WALK_LEFT);
+                break;
+
+            case STATE_WALK_RIGHT:
+                animator.SetInteger("state", STATE_WALK_RIGHT);
+                break;
+
+            case STATE_WALK_UP:
+                animator.SetInteger("state", STATE_WALK_UP);
+                break;
+
+            case STATE_WALK_DOWN:
+                animator.SetInteger("state", STATE_WALK_DOWN);
+                break;
+
+            case STATE_IDLE:
+                animator.SetInteger("state", STATE_IDLE);
+                break;
+        }
+
+        _currentAnimationState = state;
     }
 
     private bool anyMovementKeyDepressed()
