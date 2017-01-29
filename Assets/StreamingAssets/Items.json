@@ -1,0 +1,47 @@
+[
+  {
+    "id": 0,
+    "title": "magnificent sword",
+    "value": 6,
+    "description": "The most magnificent sword you have ever seen.",
+    "stackable": false,
+    "rarity": 4,
+    "slug":  "cursorSword_gold"
+  },
+  {
+    "id": 1,
+    "title": "gauntlets of power",
+    "value": 4,
+    "description": "These gloves emit a strange powerful aura.",
+    "stackable": false,
+    "rarity": 3,
+    "slug":  "gauntlets_of_power"
+  },
+  {
+    "id": 2,
+    "title": "rusty sword",
+    "value": 1,
+    "description": "This basic sword is a little rusty.",
+    "stackable": false,
+    "rarity": 0,
+    "slug":  "cursorSword_bronze"
+  },
+  {
+    "id": 3,
+    "title": "coconut",
+    "value": 1,
+    "description": "This coconut looks ready for eating.",
+    "stackable": false,
+    "rarity": 0,
+    "slug": "coconut"
+  },
+  {
+    "id": 4,
+    "title": "kelp",
+    "value": 1,
+    "description": "This seaweed looks edible.",
+    "stackable": false,
+    "rarity": 0,
+    "slug":  "kelp"
+  }
+]

@@ -57,8 +57,6 @@ public class CompletePlayerController : MonoBehaviour {
 		//Initialze winText to a blank string at beginning.
 		winText.text = "";
 
-		//Call our SetCountText function which will update the text with the current value for count.
-		SetCountText ();
 	}
 
 	//FixedUpdate called at a fixed interval and is independent of frame rate. Put physics code here.
@@ -161,7 +159,7 @@ public class CompletePlayerController : MonoBehaviour {
     void changeState(int state)
     {
 
-        if (_currentAnimationState == state)
+        if (_currentAnimationState == state) // do nothing if state isn't changing
             return;
 
         switch (state)
@@ -208,21 +206,8 @@ public class CompletePlayerController : MonoBehaviour {
 			//Add one to the current value of our count variable.
 			count = count + 1;
 			
-			//Update the currently displayed count by calling the SetCountText function.
-			SetCountText ();
 		}
 		
 	}
 
-	//This function updates the text displaying the number of objects we've collected and displays our victory message if we've collected all of them.
-	void SetCountText()
-	{
-		//Set the text property of our our countText object to "Count: " followed by the number stored in our count variable.
-		countText.text = "Count: " + count.ToString ();
-
-		//Check if we've collected all 12 pickups. If we have...
-		if (count >= 12)
-			//... then set the text property of our winText object to "You win!"
-			winText.text = "You win!";
-	}
 }
