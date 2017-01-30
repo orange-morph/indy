@@ -89,6 +89,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\GameTimeController.cs" />
     <Compile Include="Assets\Scripts\InventoryController.cs" />
+    <Compile Include="Assets\Scripts\ItemData.cs" />
     <Compile Include="Assets\Scripts\ItemDatabase.cs" />
     <Compile Include="Assets\Scripts\LoadLevel.cs" />
     <Compile Include="Assets\Scripts\ToggleInventory.cs" />

@@ -31,7 +31,7 @@
     "title": "coconut",
     "value": 1,
     "description": "This coconut looks ready for eating.",
-    "stackable": false,
+    "stackable": true,
     "rarity": 0,
     "slug": "coconut"
   },
@@ -40,7 +40,7 @@
     "title": "kelp",
     "value": 1,
     "description": "This seaweed looks edible.",
-    "stackable": false,
+    "stackable": true,
     "rarity": 0,
     "slug":  "kelp"
   }
