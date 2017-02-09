@@ -29,11 +29,39 @@ public class GameTimeController : MonoBehaviour
     private int _minutes;
     private int _seconds;
 
+    private bool _sunRising; // Use this to control sunrise ambient light effect at start of day
+    private bool _sunSetting; // Use this to control sunset ambient light effect at end of day
+    private bool _dusk; // Use this to control dusk ambient light effect at end of day
+
     private int _secondsInOneMinute;
 
-    public Text gameTimeText; // UI element used to display the game clock
+    public Text gameTimeText; // UI element used to display the game clock - set in UI
+    public Text infoText; // UI element used to display the game clock - set in UI
 
     public Slider energySlider; // UI slider element used to display player energy
+
+    // Variables for controlling sunrise / sunset / dusk ambient light effects.
+    public float sunriseDuration = 30; // Duration time of sunrise in seconds.
+    public float sunriseSmoothness = 0.02f; // This will determine the smoothness of the lerp. Smaller values are smoother. Really it's the time between updates.
+    public Color sunriseStartColor = Color.blue;
+    public Color sunriseTransitionColor1 = Color.yellow;
+    public Color sunriseTransitionColor2 = Color.yellow;
+    public Color sunriseEndColor = Color.white;
+    Color sunriseCurrentColor = Color.white; // This is the state of the color in the current interpolation.
+
+    public float sunsetDuration = 30; // Duration time of sunset in seconds.
+    public float sunsetSmoothness = 0.02f; // This will determine the smoothness of the lerp. Smaller values are smoother. Really it's the time between updates.
+    public Color sunsetStartColor = Color.white;
+    public Color sunsetTransitionColor = Color.yellow;
+    public Color sunsetEndColor = Color.yellow;
+    Color sunsetCurrentColor = Color.white; // This is the state of the color in the current interpolation.
+
+    public float duskDuration = 30; // Duration time of dusk in seconds.
+    public float duskSmoothness = 0.02f; // This will determine the smoothness of the lerp. Smaller values are smoother. Really it's the time between updates.
+    public Color duskStartColor = Color.yellow;
+    public Color duskTransitionColor = Color.blue;
+    public Color duskEndColor = Color.black;
+    Color duskCurrentColor = Color.white; // This is the state of the color in the current interpolation.
 
     // Use this for initialization
     void Start()
@@ -52,7 +80,12 @@ public class GameTimeController : MonoBehaviour
         _degreeRotation = DEGREES_PER_SECOND * DAY / (dayCycleInMinutes * MINUTE);
         Time.timeScale = 1.0f;
         gameTimeText.text = ""; //Initialize game time text to a blank string.
+        infoText.text = "";
         _secondsInOneMinute = 0;
+
+        _sunRising = false;
+        _sunSetting = false;
+        _dusk = false;
     }
 
     // Update is called once per frame
@@ -68,17 +101,19 @@ public class GameTimeController : MonoBehaviour
             // Every time seconds exceeds 60, add 1 to minutes and take seconds back by 60
             if (_seconds >= 60)
             {
-                if(_seconds >= 120)
+                if (_seconds >= 120)
                 {
                     _minutes += 2;
-                    energySlider.value -= 2; // decrease player energy by 2 points
                     _seconds -= 120;
                 }
                 else
                 {
                     _minutes++;
-                    energySlider.value -= 1; // decrease player energy by 1 point
                     _seconds -= 60;
+                }
+                if (_minutes % 10 == 0)
+                {
+                    energySlider.value -= 1; // decrease player energy by 1 point
                 }
             }
             // Every time minutes hits 60, add 1 to hours and set minutes to 0
@@ -92,7 +127,7 @@ public class GameTimeController : MonoBehaviour
             {
                 _days++;
                 _hours = 6;
-                energySlider.value = 100; // reset energy for a new day!
+                energySlider.value = 300; // reset energy for a new day!
             }
             // Every time days hit 31, add 1 to months and set day to 1
             if (_days == 31)
@@ -108,15 +143,142 @@ public class GameTimeController : MonoBehaviour
             }
 
             _lastSecondsSinceStart = _secondsSinceStart; // finally, store the current elapsed seconds for next pass.
+            
             // Set a UI display string of DAY x HOUR::MIN::SECS
-            // Only update the time at '10 minute' intervals, and decrease energy by 1 pt
+            // Only update the time at '10 minute' intervals
             if (_minutes % 10 == 0)
             {
                 gameTimeText.text = "DAY " + _days.ToString("D2") + " " + _hours.ToString("D2") + ":" + _minutes.ToString("D2");
-            }
-            
+            }    
         }
-              
+
+        ambientLighting(); // handle sunrise, sunset, and dusk light transitions.
+        
+    }
+
+    // check for and execute effects needed for sunrise, sunset and dusk ambient light transitions.
+    public void ambientLighting()
+    {
+        if (_hours >= 6 && _hours <= 9)
+        {
+            if (_sunRising == false)
+            {
+                _sunRising = true;
+                StartCoroutine("RunSunrise");   
+            }
+            _sunSetting = false;
+            _dusk = false;
+        }
+        else
+        {
+            if (_hours >= 19 && _hours <= 24)
+            {
+                if (_sunSetting == false)
+                {
+                    _sunSetting = true;
+                    StartCoroutine("RunSunset");
+                }
+                _sunRising = false;
+                _dusk = false;
+            }
+            else
+            {
+                //if (_hours >= 21 && _hours <= 24)
+                //{
+                //    if (_dusk == false)
+                //    {
+                //        _dusk = true;
+                //        StartCoroutine("RunDusk");
+                //    }
+                //    _sunSetting = false;
+                //    _sunRising = false;
+                //}
+                //else
+                //{
+                    _sunRising = false;
+                    _sunSetting = false;
+                    _dusk = false;
+                    infoText.text = "";
+                //}
+            }
+        }
+    }
+
+    IEnumerator RunSunrise()
+    {
+        float progress = 0; //This float will serve as the 3rd parameter of the lerp function.
+        float increment = sunriseSmoothness / sunriseDuration; // The amount of change to apply.
+        while (progress < 1)
+        {
+            sunriseCurrentColor = Color.Lerp(sunriseStartColor, sunriseTransitionColor1, progress);
+            RenderSettings.ambientLight = sunriseCurrentColor;
+            progress += increment;
+            infoText.text = "SUN RISING 1: " + progress.ToString();
+            yield return new WaitForSeconds(sunriseSmoothness);
+        }
+        progress = 0;
+        while (progress < 1)
+        {
+            sunriseCurrentColor = Color.Lerp(sunriseTransitionColor1, sunriseTransitionColor2, progress);
+            RenderSettings.ambientLight = sunriseCurrentColor;
+            progress += increment;
+            infoText.text = "SUN RISING 2: " + progress.ToString();
+            yield return new WaitForSeconds(sunriseSmoothness);
+        }
+        progress = 0;
+        while (progress < 1)
+        {
+            sunriseCurrentColor = Color.Lerp(sunriseTransitionColor2, sunriseEndColor, progress);
+            RenderSettings.ambientLight = sunriseCurrentColor;
+            progress += increment;
+            infoText.text = "SUN RISING 3: " + progress.ToString();
+            yield return new WaitForSeconds(sunriseSmoothness);
+        }
+        infoText.text = "";
+        yield return true;
+    }
+
+    IEnumerator RunSunset()
+    {
+        float progress = 0; //This float will serve as the 3rd parameter of the lerp function.
+        float increment = sunsetSmoothness / sunsetDuration; // The amount of change to apply.
+        while (progress < 1)
+        {
+            sunsetCurrentColor = Color.Lerp(sunsetStartColor, sunsetTransitionColor, progress);
+            RenderSettings.ambientLight = sunsetCurrentColor; 
+            progress += increment;
+            infoText.text = "SUN SETTING 1: " + progress.ToString();
+            yield return new WaitForSeconds(sunsetSmoothness);
+        }
+        progress = 0;
+        while (progress < 1)
+        {
+            sunsetCurrentColor = Color.Lerp(sunsetTransitionColor, sunsetEndColor, progress);
+            RenderSettings.ambientLight = sunsetCurrentColor;
+            progress += increment;
+            infoText.text = "SUN SETTING 2: " + progress.ToString();
+            yield return new WaitForSeconds(sunsetSmoothness);
+        }
+        progress = 0;
+        while (progress < 1)
+        {
+            duskCurrentColor = Color.Lerp(duskStartColor, duskTransitionColor, progress);
+            RenderSettings.ambientLight = duskCurrentColor;
+            progress += increment;
+            infoText.text = "DUSK 1: " + progress.ToString();
+            yield return new WaitForSeconds(duskSmoothness);
+        }
+        progress = 0;
+        while (progress < 1)
+        {
+            duskCurrentColor = Color.Lerp(duskTransitionColor, duskEndColor, progress);
+            RenderSettings.ambientLight = duskCurrentColor;
+            progress += increment;
+            infoText.text = "DUSK 2: " + progress.ToString();
+            yield return new WaitForSeconds(duskSmoothness);
+        }
+        infoText.text = "";
+        yield return true;
     }
 
 }

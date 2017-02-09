@@ -707,6 +707,7 @@
     <Compile Include="Assets\Devdog\InventoryPro\Standard Assets\Cameras\Scripts\ProtectCameraFromWallClip.cs" />
     <Compile Include="Assets\Devdog\InventoryPro\Standard Assets\Characters\ThirdPersonCharacter\Scripts\ThirdPersonCharacter.cs" />
     <Compile Include="Assets\Devdog\InventoryPro\Standard Assets\Characters\ThirdPersonCharacter\Scripts\ThirdPersonUserControl.cs" />
+    <Compile Include="Assets\Scripts\AnimateTiledTexture.cs" />
     <Compile Include="Assets\Scripts\CompleteCameraController.cs" />
     <Compile Include="Assets\Scripts\CompletePlayerController.cs" />
     <Compile Include="Assets\Scripts\CompleteRotator.cs" />
