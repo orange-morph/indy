@@ -41,6 +41,7 @@ public class GameTimeController : MonoBehaviour
     public Slider energySlider; // UI slider element used to display player energy
 
     // Variables for controlling sunrise / sunset / dusk ambient light effects.
+    [Header("Sunrise Transition Controls")]
     public float sunriseDuration = 30; // Duration time of sunrise in seconds.
     public float sunriseSmoothness = 0.02f; // This will determine the smoothness of the lerp. Smaller values are smoother. Really it's the time between updates.
     public Color sunriseStartColor = Color.blue;
@@ -49,6 +50,7 @@ public class GameTimeController : MonoBehaviour
     public Color sunriseEndColor = Color.white;
     Color sunriseCurrentColor = Color.white; // This is the state of the color in the current interpolation.
 
+    [Header("Sunset Transition Controls")]
     public float sunsetDuration = 30; // Duration time of sunset in seconds.
     public float sunsetSmoothness = 0.02f; // This will determine the smoothness of the lerp. Smaller values are smoother. Really it's the time between updates.
     public Color sunsetStartColor = Color.white;
