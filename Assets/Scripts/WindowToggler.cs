@@ -12,7 +12,7 @@ public class WindowToggler : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        questLogIsShowing = false;
+        //questLogIsShowing = false;
     }
 
     // Update is called once per frame
@@ -20,8 +20,8 @@ public class WindowToggler : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.L))
         {
-            questLogIsShowing = !questLogIsShowing;
-            if (questLogIsShowing)
+            //questLogIsShowing = !questLogIsShowing;
+            if (!questLogWindow.IsOpen)
             {
                 questLogWindow.Open();
             }

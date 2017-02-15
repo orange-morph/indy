@@ -1,6 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using Devdog.General;
+using Devdog.General.UI;
+using Devdog.InventoryPro;
+using Devdog.InventoryPro.UI;
+using PixelCrushers.DialogueSystem;
 
 public class GameTimeController : MonoBehaviour
 {
@@ -65,6 +70,12 @@ public class GameTimeController : MonoBehaviour
     public Color duskEndColor = Color.black;
     Color duskCurrentColor = Color.white; // This is the state of the color in the current interpolation.
 
+    [Header("Pausable UI Windows")]
+    public UnityUIQuestLogWindow questLogWindow; // Assign in inspector
+    public GameObject startScreen; // Assign in inspector
+
+    // Also need: various Inventory UI windows (inventory, character)
+
     // Use this for initialization
     void Start()
     {
@@ -80,11 +91,9 @@ public class GameTimeController : MonoBehaviour
         _months = 1; // start in month 1
         _years = 1; // start in year 1
         _degreeRotation = DEGREES_PER_SECOND * DAY / (dayCycleInMinutes * MINUTE);
-        Time.timeScale = 1.0f;
         gameTimeText.text = ""; //Initialize game time text to a blank string.
         infoText.text = "";
         _secondsInOneMinute = 0;
-
         _sunRising = false;
         _sunSetting = false;
         _dusk = false;

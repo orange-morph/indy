@@ -40,11 +40,11 @@ public class TutorialInfo : MonoBehaviour
 		// show the overlay info or continue to play the game
 		if (showAtStart) 
 		{
-			ShowLaunchScreen();
+            ShowLaunchScreen(); 
 		}
 		else 
 		{
-			StartGame ();
+			StartGame();
 		}
 
 	}
@@ -58,20 +58,15 @@ public class TutorialInfo : MonoBehaviour
 		overlay.SetActive (true);
 	}
 
-	// open the stored URL for this content in a web browser
-	public void LaunchTutorial()
-	{
-		Application.OpenURL (url);
-	}
-
 	// continue to play, by ensuring the preference is set correctly, the overlay is not active, 
 	// and that the audio listener is enabled, and time scale is 1 (normal)
 	public void StartGame()
-	{		
-		overlay.SetActive (false);
-		mainListener.enabled = true;
-		Time.timeScale = 1f;
-	}
+	{
+        mainListener.enabled = true;
+        overlay.SetActive (false);
+        Time.timeScale = 1f;
+
+    }
 
 	// set the boolean storing show at start status to equal the UI toggle's status
 	public void ToggleShowAtLaunch()
