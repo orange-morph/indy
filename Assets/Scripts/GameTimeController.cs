@@ -21,7 +21,7 @@ public class GameTimeController : MonoBehaviour
 
     private const float DEGREES_PER_SECOND = 360 / DAY;
 
-    private float _degreeRotation;
+    //private float _degreeRotation;
 
     private float _timeofDay;
     private int _secondsSinceStart;
@@ -73,6 +73,7 @@ public class GameTimeController : MonoBehaviour
     [Header("Pausable UI Windows")]
     public UnityUIQuestLogWindow questLogWindow; // Assign in inspector
     public GameObject startScreen; // Assign in inspector
+    public UIWindow inventoryWindow; // Assign in inspector
 
     // Also need: various Inventory UI windows (inventory, character)
 
@@ -90,7 +91,7 @@ public class GameTimeController : MonoBehaviour
         _days = 1; // start on day 1
         _months = 1; // start in month 1
         _years = 1; // start in year 1
-        _degreeRotation = DEGREES_PER_SECOND * DAY / (dayCycleInMinutes * MINUTE);
+        //_degreeRotation = DEGREES_PER_SECOND * DAY / (dayCycleInMinutes * MINUTE);
         gameTimeText.text = ""; //Initialize game time text to a blank string.
         infoText.text = "";
         _secondsInOneMinute = 0;
@@ -290,6 +291,16 @@ public class GameTimeController : MonoBehaviour
         }
         infoText.text = "";
         yield return true;
+    }
+
+    public void PauseTime()
+    {
+        Time.timeScale = 0.0f;
+    }
+
+    public void UnPauseTime()
+    {
+        Time.timeScale = 1.0f;
     }
 
 }

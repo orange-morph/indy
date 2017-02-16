@@ -26,10 +26,10 @@ public class CompletePlayerController : MonoBehaviour {
     Animator animator;
 
     //some flags to check when certain animations are playing
-    bool _isPlaying_walk_left = false;
-    bool _isPlaying_walk_right = false;
-    bool _isPlaying_walk_up = false;
-    bool _isPlaying_walk_down = false;
+    //bool _isPlaying_walk_left = false;
+    //bool _isPlaying_walk_right = false;
+    //bool _isPlaying_walk_up = false;
+    //bool _isPlaying_walk_down = false;
    
     //animation states - the values in the animator conditions
     const int STATE_IDLE = 0;
@@ -38,7 +38,7 @@ public class CompletePlayerController : MonoBehaviour {
     const int STATE_WALK_UP = 3;
     const int STATE_WALK_DOWN = 4;
 
-    string _currentDirection = "left";
+    //string _currentDirection = "left";
     int _currentAnimationState = STATE_IDLE;
 
 
