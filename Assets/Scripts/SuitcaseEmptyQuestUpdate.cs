@@ -8,6 +8,8 @@ using Devdog.InventoryPro;
 using Devdog.InventoryPro.UI;
 using UnityEngine.Serialization;
 using PixelCrushers.DialogueSystem;
+using UnityStandardAssets.Effects;
+using UnityStandardAssets.ImageEffects;
 
 namespace Devdog.InventoryPro
 {
@@ -28,10 +30,14 @@ namespace Devdog.InventoryPro
         private ConsumableInventoryItem bandageItem;  // bandage item
         public ItemCollectionBase playerInventoryCollection; // player inventory, used for item events (added item, used item)
         private bool gotAllItems;
+        private bool usedBandage;
+        public Camera mainCamera;
+        public VignetteAndChromaticAberration chromatic_Vignette;
 
         protected void Start()
         {
             gotAllItems = false;
+            usedBandage = false;
             suitcaseLoot = suitcase.GetComponent<LootableObject>();
             firstAidKitItem = firstAidKit.GetComponent<ItemPouchInventoryItem>();
             bandageItem = bandage.GetComponent<ConsumableInventoryItem>();
@@ -63,15 +69,35 @@ namespace Devdog.InventoryPro
                 if (item.ID.Equals(bandageItem.ID))
                 {
                     Debug.LogWarning("The bandage has been used by the player in their inventory!");
+                    chromatic_Vignette.chromaticAberration = 0;
+                    chromatic_Vignette.enabled = false;
+                    usedBandage = true;
                     usedBandageTrigger.Fire(); // fire the quest completion trigger
                 }
             };
+        }
+
+        IEnumerator Headache()
+        {
+            chromatic_Vignette.enabled = true;
+            while (!usedBandage)
+            {
+                chromatic_Vignette.chromaticAberration = Mathf.PingPong(Time.time, 9);
+                chromatic_Vignette.blur = Mathf.PingPong(Time.time, 6);
+                chromatic_Vignette.blurDistance = Mathf.PingPong(Time.time, 4);
+                yield return new WaitForFixedUpdate();
+            }
+            chromatic_Vignette.chromaticAberration = 0;
+            chromatic_Vignette.enabled = false;
+            yield return true;
+
         }
 
         IEnumerator GotAllItems()
         {
             gotAllItemsTrigger.Fire(); // fire the quest completion trigger
             yield return new WaitForSeconds(3); // wait 3 seconds for success alert to clear nicely
+            StartCoroutine("Headache");
             StartCoroutine("RunNextConvo"); // kick off next convo
             yield return true;    
         }
@@ -81,6 +107,7 @@ namespace Devdog.InventoryPro
             gotAllItems = true;
             DialogueManager.StartConversation("beach2 heal thyself"); // Kick off the next conversation
             StartCoroutine("RunNextQuest"); // trigger the next quest
+           
             yield return true;
         }
 
