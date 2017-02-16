@@ -11,8 +11,6 @@ using PixelCrushers.DialogueSystem;
 
 namespace Devdog.InventoryPro
 {
-    //using Devdog.General.ThirdParty.UniLinq;
-
     [AddComponentMenu(InventoryPro.AddComponentMenuPath + "Triggers/Lootable objet")]
     public class SuitcaseEmptyQuestUpdate : MonoBehaviour
     {
@@ -22,6 +20,8 @@ namespace Devdog.InventoryPro
         public QuestTrigger gotAllItemsTrigger; // reference to the DialogueSystem quest itself, set via the UI
         public ConversationTrigger healThyselfConvo; // The next convo to be triggered after this quest.
         public QuestTrigger healThyselfQuestTrigger;
+        public GameObject firstAidKit;
+        public GameObject bandage;
 
         protected void Start()
         {
