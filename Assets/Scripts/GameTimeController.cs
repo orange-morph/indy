@@ -40,11 +40,15 @@ public class GameTimeController : MonoBehaviour
 
     private int _secondsInOneMinute;
 
+    [Header("Game Time Display Elements")]
     public Text gameTimeText; // UI element used to display the game clock - set in UI
     public Text infoText; // UI element used to display the game clock - set in UI
 
+    [Header("Player Health and Energy Sliders")]
+    public Player2D player; // Assign in UI, will be needed to get / set health and energy
+    public Slider healthSlider; // UI slider element used to display player health
     public Slider energySlider; // UI slider element used to display player energy
-
+    
     // Variables for controlling sunrise / sunset / dusk ambient light effects.
     [Header("Sunrise Transition Controls")]
     public float sunriseDuration = 30; // Duration time of sunrise in seconds.
@@ -80,8 +84,10 @@ public class GameTimeController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        healthSlider = GameObject.Find("HealthSlider").GetComponent<Slider>();
         energySlider = GameObject.Find("EnergySlider").GetComponent<Slider>();
-        energySlider.value = 300;
+        healthSlider.value = player.health;
+        energySlider.value = player.energy;
         _timeofDay = 0; // start time of day at zero
         _secondsSinceStart = 0;
         _lastSecondsSinceStart = 0;

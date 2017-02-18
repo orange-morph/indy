@@ -6,11 +6,14 @@ using UnityEngine.UI;
 
 public class CompletePlayerController : MonoBehaviour {
 
+    [Header("Walking Speed")]
     public float walkSpeed = 1; // player left right walk speed
+    public float speed;             //Floating point variable to store the player's movement speed.
 
-    public float speed;				//Floating point variable to store the player's movement speed.
-	public Text countText;			//Store a reference to the UI Text component which will display the number of pickups collected.
+    public Text countText;			//Store a reference to the UI Text component which will display the number of pickups collected.
 	public Text winText;			//Store a reference to the UI Text component which will display the 'You win' message.
+
+    [Header("Audio")]
     public AudioSource footsteps;  //Store a reference to the AudioSource attached to the player for footsteps
 
     private Rigidbody2D rb2d;		//Store a reference to the Rigidbody2D component required to use 2D Physics.
@@ -40,7 +43,6 @@ public class CompletePlayerController : MonoBehaviour {
 
     //string _currentDirection = "left";
     int _currentAnimationState = STATE_IDLE;
-
 
     // initialization
     void Start()

@@ -32,6 +32,7 @@ namespace Devdog.InventoryPro
         private bool gotAllItems;
         private bool usedBandage;
         public Camera mainCamera;
+        public Player2D mainPlayer;
         public VignetteAndChromaticAberration chromatic_Vignette;
 
         protected void Start()
@@ -72,6 +73,8 @@ namespace Devdog.InventoryPro
                     chromatic_Vignette.chromaticAberration = 0;
                     chromatic_Vignette.enabled = false;
                     usedBandage = true;
+                    mainPlayer.restoreHealth();
+                    mainPlayer.addEnergy(20);
                     usedBandageTrigger.Fire(); // fire the quest completion trigger
                 }
             };
@@ -79,13 +82,16 @@ namespace Devdog.InventoryPro
 
         IEnumerator Headache()
         {
+            chromatic_Vignette.intensity = 1.5f;
+            chromatic_Vignette.luminanceDependency = 2.0f;
+            chromatic_Vignette.blurSpread = 2.0f;
             chromatic_Vignette.enabled = true;
             while (!usedBandage)
             {
-                chromatic_Vignette.chromaticAberration = Mathf.PingPong(Time.time, 9);
+                chromatic_Vignette.chromaticAberration = Mathf.PingPong(Time.time, 4);
                 chromatic_Vignette.blur = Mathf.PingPong(Time.time, 6);
                 chromatic_Vignette.blurDistance = Mathf.PingPong(Time.time, 4);
-                yield return new WaitForFixedUpdate();
+                yield return new WaitForSeconds(1);
             }
             chromatic_Vignette.chromaticAberration = 0;
             chromatic_Vignette.enabled = false;
@@ -96,7 +102,7 @@ namespace Devdog.InventoryPro
         IEnumerator GotAllItems()
         {
             gotAllItemsTrigger.Fire(); // fire the quest completion trigger
-            yield return new WaitForSeconds(3); // wait 3 seconds for success alert to clear nicely
+            yield return new WaitForSeconds(2); // wait 3 seconds for success alert to clear nicely
             StartCoroutine("Headache");
             StartCoroutine("RunNextConvo"); // kick off next convo
             yield return true;    

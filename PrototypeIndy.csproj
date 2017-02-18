@@ -149,7 +149,6 @@
     <Compile Include="Assets\Devdog\General\Player\Interfaces\IPlayerInputCallbacks.cs" />
     <Compile Include="Assets\Devdog\General\Player\Interfaces\IPlayerTriggerHandler.cs" />
     <Compile Include="Assets\Devdog\General\Player\Player.cs" />
-    <Compile Include="Assets\Devdog\General\Player\Player2D.cs" />
     <Compile Include="Assets\Devdog\General\Player\PlayerTriggerHandler.cs" />
     <Compile Include="Assets\Devdog\General\Player\PlayerTriggerHandler2D.cs" />
     <Compile Include="Assets\Devdog\General\Player\PlayerTriggerHandlerBase.cs" />
@@ -792,6 +791,7 @@
     <Compile Include="Assets\Dialogue System\Scripts\Templates\TemplateTextFieldUI.cs" />
     <Compile Include="Assets\MyInventoryProAssets\Scripts\Modules\InfoBox\InfoBoxUIJen.cs" />
     <Compile Include="Assets\MyInventoryProAssets\Scripts\Modules\InfoBox\InventoryInfoBoxUIJen.cs" />
+    <Compile Include="Assets\MyInventoryProAssets\Scripts\Modules\Player\Player2D.cs" />
     <Compile Include="Assets\Scripts\AnimateTiledTexture.cs" />
     <Compile Include="Assets\Scripts\CompleteCameraController.cs" />
     <Compile Include="Assets\Scripts\CompletePlayerController.cs" />
