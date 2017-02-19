@@ -52,6 +52,9 @@
     <Reference Include="UnityEngine">
       <HintPath>Library\UnityAssemblies\UnityEngine.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.Advertisements">
+      <HintPath>Library\UnityAssemblies\UnityEngine.Advertisements.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
     </Reference>
@@ -66,6 +69,9 @@
     </Reference>
     <Reference Include="UnityEngine.HoloLens">
       <HintPath>Library\UnityAssemblies\UnityEngine.HoloLens.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Purchasing">
+      <HintPath>Library\UnityAssemblies\UnityEngine.Purchasing.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.VR">
       <HintPath>Library\UnityAssemblies\UnityEngine.VR.dll</HintPath>
@@ -180,12 +186,7 @@
   <ItemGroup>
     <None Include="Assets\Devdog\General.xml" />
     <None Include="Assets\Devdog\InventoryPro\Config.xml" />
-    <None Include="Assets\Devdog\InventoryPro\Demos\Assets\UI\Shaders\SpriteShader.shader" />
     <None Include="Assets\Devdog\InventoryPro\README.txt" />
-    <None Include="Assets\Devdog\InventoryPro\Scripts\Diagrams\ClassDiagram1.cd" />
-    <None Include="Assets\Devdog\InventoryPro\Scripts\Diagrams\InventorySystem.cd" />
-    <None Include="Assets\Devdog\InventoryPro\Scripts\Diagrams\UIItemWrappers.cd" />
-    <None Include="Assets\Devdog\InventoryPro\Standard Assets\Cameras\CameraGuidelines.txt" />
     <None Include="Assets\Dialogue System\DLLs\_README.txt" />
     <None Include="Assets\Dialogue System\Documentation\_README.txt" />
     <None Include="Assets\Dialogue System\Examples\Art\Portraits\_README.txt" />
@@ -237,12 +238,15 @@
     <None Include="Assets\Dialogue System\Scripts\Supplemental\UI\_README.txt" />
     <None Include="Assets\Dialogue System\Scripts\Supplemental\Utility\_README.txt" />
     <None Include="Assets\Dialogue System\Scripts\_README.txt" />
+    <None Include="Assets\Dialogue System\Third Party Support\S-Inventory\Example\_README.txt" />
+    <None Include="Assets\Dialogue System\Third Party Support\S-Inventory\_README.txt" />
     <None Include="Assets\Dialogue System\Third Party Support\_README.txt" />
     <None Include="Assets\Dialogue System\_README.txt" />
     <None Include="Assets\Fonts\license.txt" />
     <None Include="Assets\Plugins\SpriteTile\Resources\Sprites-DefaultNonTransparent.shader" />
     <None Include="Assets\Plugins\SpriteTile\Resources\Sprites-DiffuseNonTransparent.shader" />
     <None Include="Assets\Resources\Sprites\UI\uipack_rpg_sheet.xml" />
+    <None Include="Assets\S-Inventory\README.txt" />
     <None Include="Assets\SpriteTile\Read before importing demos!.txt" />
     <None Include="Assets\SpriteTile\SpriteTile changelog.txt" />
     <None Include="Assets\SpriteTile\UPGRADE GUIDE!.txt" />

@@ -1,10 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
-using Devdog.General;
-using Devdog.General.UI;
-using Devdog.InventoryPro;
-using Devdog.InventoryPro.UI;
 using PixelCrushers.DialogueSystem;
 
 public class GameTimeController : MonoBehaviour
@@ -45,7 +41,7 @@ public class GameTimeController : MonoBehaviour
     public Text infoText; // UI element used to display the game clock - set in UI
 
     [Header("Player Health and Energy Sliders")]
-    public Player2D player; // Assign in UI, will be needed to get / set health and energy
+    public MyPlayer player; // Assign in UI, will be needed to get / set health and energy
     public Slider healthSlider; // UI slider element used to display player health
     public Slider energySlider; // UI slider element used to display player energy
     
@@ -77,7 +73,6 @@ public class GameTimeController : MonoBehaviour
     [Header("Pausable UI Windows")]
     public UnityUIQuestLogWindow questLogWindow; // Assign in inspector
     public GameObject startScreen; // Assign in inspector
-    public UIWindow inventoryWindow; // Assign in inspector
 
     // Also need: various Inventory UI windows (inventory, character)
 
@@ -86,8 +81,8 @@ public class GameTimeController : MonoBehaviour
     {
         healthSlider = GameObject.Find("HealthSlider").GetComponent<Slider>();
         energySlider = GameObject.Find("EnergySlider").GetComponent<Slider>();
-        healthSlider.value = player.health;
-        energySlider.value = player.energy;
+        //healthSlider.value = player.health;
+        //energySlider.value = player.energy;
         _timeofDay = 0; // start time of day at zero
         _secondsSinceStart = 0;
         _lastSecondsSinceStart = 0;
