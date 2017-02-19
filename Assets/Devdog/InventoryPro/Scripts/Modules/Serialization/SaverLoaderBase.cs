@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Assertions;
 
 namespace Devdog.InventoryPro
 {
@@ -47,12 +46,23 @@ namespace Devdog.InventoryPro
             }
 
 #if UNITY_5_4_OR_NEWER
-            UnityEngine.SceneManagement.SceneManager.sceneLoaded += (scene, loadMode) =>
-            {
-                StartCoroutine(Init());
-            };
+            UnityEngine.SceneManagement.SceneManager.sceneLoaded += DoInit;
 #endif
         }
+
+        protected void OnDestroy()
+        {
+#if UNITY_5_4_OR_NEWER
+            UnityEngine.SceneManagement.SceneManager.sceneLoaded -= DoInit;
+#endif
+        }
+
+#if UNITY_5_4_OR_NEWER
+        protected void DoInit(UnityEngine.SceneManagement.Scene scene, UnityEngine.SceneManagement.LoadSceneMode loadMode)
+        {
+            StartCoroutine(Init());
+        }
+#endif
 
 #if UNITY_5_0 || UNITY_5_1 || UNITY_5_2 || UNITY_5_3
 

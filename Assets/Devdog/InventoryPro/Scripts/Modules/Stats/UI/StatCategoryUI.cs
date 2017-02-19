@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using Devdog.General;
+using Devdog.General.UI;
 using Devdog.InventoryPro;
 using UnityEngine.UI;
 
@@ -23,6 +24,8 @@ namespace Devdog.InventoryPro.UI
         [Required]
         public RectTransform container;
 
+        public bool expandToParentSize = false;
+
         /// <summary>
         /// Check if the item is folded or not.
         /// </summary>
@@ -42,6 +45,11 @@ namespace Devdog.InventoryPro.UI
             if(foldButton != null)
             {
                 foldButton.onClick.AddListener(OnFoldButtonClicked);
+            }
+
+            if (expandToParentSize)
+            {
+                UIUtility.InheritParentSize(transform);
             }
         }
 

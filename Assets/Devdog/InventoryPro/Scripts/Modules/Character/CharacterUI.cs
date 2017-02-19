@@ -379,7 +379,6 @@ namespace Devdog.InventoryPro
                 }
 
                 NotifyItemAdded(item, item.currentStackSize, true);
-                window.Show(); // show the character window when an item has been equipped
                 items[equipSlot.index].Repaint();
 
                 return true;

@@ -124,6 +124,8 @@ namespace Devdog.InventoryPro
                     // All keys down
                     items[i].TriggerUse();
                     items[i].Repaint();
+
+                    return; // Only 1 key input per frame...
                 }
             }
         }

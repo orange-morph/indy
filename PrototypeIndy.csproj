@@ -91,6 +91,9 @@
     <Reference Include="SpriteTile">
       <HintPath>Assets\Plugins\SpriteTile\Core\SpriteTile.dll</HintPath>
     </Reference>
+    <Reference Include="Devdog.Internal">
+      <HintPath>Assets\Devdog\Internal\Devdog.Internal.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="PrototypeIndy.Plugins.csproj">
@@ -149,6 +152,7 @@
     <Compile Include="Assets\Devdog\General\Player\Interfaces\IPlayerInputCallbacks.cs" />
     <Compile Include="Assets\Devdog\General\Player\Interfaces\IPlayerTriggerHandler.cs" />
     <Compile Include="Assets\Devdog\General\Player\Player.cs" />
+    <Compile Include="Assets\Devdog\General\Player\Player2D.cs" />
     <Compile Include="Assets\Devdog\General\Player\PlayerTriggerHandler.cs" />
     <Compile Include="Assets\Devdog\General\Player\PlayerTriggerHandler2D.cs" />
     <Compile Include="Assets\Devdog\General\Player\PlayerTriggerHandlerBase.cs" />
@@ -637,6 +641,7 @@
     <Compile Include="Assets\Devdog\InventoryPro\Scripts\Modules\SelectableObjects\Interfaces\ISelectableObjectInfo.cs" />
     <Compile Include="Assets\Devdog\InventoryPro\Scripts\Modules\SelectableObjects\Models\SelectableObjectInfo.cs" />
     <Compile Include="Assets\Devdog\InventoryPro\Scripts\Modules\SelectableObjects\SelectableObjectInfoUI.cs" />
+    <Compile Include="Assets\Devdog\InventoryPro\Scripts\Modules\Serialization\Attributes\SerializationModelAttribute.cs" />
     <Compile Include="Assets\Devdog\InventoryPro\Scripts\Modules\Serialization\CollectionSaverLoaderBase.cs" />
     <Compile Include="Assets\Devdog\InventoryPro\Scripts\Modules\Serialization\ContainerSaverLoaderBase.cs" />
     <Compile Include="Assets\Devdog\InventoryPro\Scripts\Modules\Serialization\Exceptions\SerializedObjectNotFoundException.cs" />
@@ -645,6 +650,7 @@
     <Compile Include="Assets\Devdog\InventoryPro\Scripts\Modules\Serialization\Interfaces\IItemsSerializer.cs" />
     <Compile Include="Assets\Devdog\InventoryPro\Scripts\Modules\Serialization\JsonItemsSerializer.cs" />
     <Compile Include="Assets\Devdog\InventoryPro\Scripts\Modules\Serialization\Models\CurrencyDecoratorSerializationModel.cs" />
+    <Compile Include="Assets\Devdog\InventoryPro\Scripts\Modules\Serialization\Models\ExtendedInventoryItemSerializationModel.cs" />
     <Compile Include="Assets\Devdog\InventoryPro\Scripts\Modules\Serialization\Models\InventoryItemSerializationModel.cs" />
     <Compile Include="Assets\Devdog\InventoryPro\Scripts\Modules\Serialization\Models\ItemCollectionSerializationModel.cs" />
     <Compile Include="Assets\Devdog\InventoryPro\Scripts\Modules\Serialization\Models\ItemContainerSerializationModel.cs" />
@@ -791,7 +797,7 @@
     <Compile Include="Assets\Dialogue System\Scripts\Templates\TemplateTextFieldUI.cs" />
     <Compile Include="Assets\MyInventoryProAssets\Scripts\Modules\InfoBox\InfoBoxUIJen.cs" />
     <Compile Include="Assets\MyInventoryProAssets\Scripts\Modules\InfoBox\InventoryInfoBoxUIJen.cs" />
-    <Compile Include="Assets\MyInventoryProAssets\Scripts\Modules\Player\Player2D.cs" />
+    <Compile Include="Assets\MyInventoryProAssets\Scripts\Modules\Player\MyPlayer2D.cs" />
     <Compile Include="Assets\Scripts\AnimateTiledTexture.cs" />
     <Compile Include="Assets\Scripts\CompleteCameraController.cs" />
     <Compile Include="Assets\Scripts\CompletePlayerController.cs" />
@@ -804,21 +810,6 @@
     <Compile Include="Assets\Scripts\SuitcaseEmptyQuestUpdate.cs" />
     <Compile Include="Assets\Scripts\ToggleInventory.cs" />
     <Compile Include="Assets\Scripts\WindowToggler.cs" />
-    <Compile Include="Assets\SpriteTile Demos\Animated Tiles\AnimatedTiles.cs" />
-    <Compile Include="Assets\SpriteTile Demos\Endless Scroll\EndlessScroll.cs" />
-    <Compile Include="Assets\SpriteTile Demos\Level Viewer\LevelViewer.cs" />
-    <Compile Include="Assets\SpriteTile Demos\Light Animation\Scripts\LightAnimation1.cs" />
-    <Compile Include="Assets\SpriteTile Demos\Light Animation\Scripts\LightAnimation2.cs" />
-    <Compile Include="Assets\SpriteTile Demos\Light Animation\Scripts\LightManager.cs" />
-    <Compile Include="Assets\SpriteTile Demos\Multi Agents\MultiAgents.cs" />
-    <Compile Include="Assets\SpriteTile Demos\Procedural Level\Scripts\CameraFollow.cs" />
-    <Compile Include="Assets\SpriteTile Demos\Procedural Level\Scripts\LevelControl.cs" />
-    <Compile Include="Assets\SpriteTile Demos\Property Demo\Scripts\BallControl.cs" />
-    <Compile Include="Assets\SpriteTile Demos\Property Demo\Scripts\DemoManager.cs" />
-    <Compile Include="Assets\SpriteTile Demos\Property Demo\Scripts\Lift.cs" />
-    <Compile Include="Assets\SpriteTile Demos\Runtime Groups\RuntimeGroups.cs" />
-    <Compile Include="Assets\SpriteTile Demos\TileDraw\TileDraw.cs" />
-    <Compile Include="Assets\SpriteTile Demos\Trigger Demo\TriggerControl.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\TutorialInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -887,9 +878,6 @@
     <None Include="Assets\Plugins\SpriteTile\Resources\Sprites-DefaultNonTransparent.shader" />
     <None Include="Assets\Plugins\SpriteTile\Resources\Sprites-DiffuseNonTransparent.shader" />
     <None Include="Assets\Resources\Sprites\UI\uipack_rpg_sheet.xml" />
-    <None Include="Assets\SpriteTile\Read before importing demos!.txt" />
-    <None Include="Assets\SpriteTile\SpriteTile changelog.txt" />
-    <None Include="Assets\SpriteTile\UPGRADE GUIDE!.txt" />
     <None Include="Assets\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
     <None Include="Assets\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />
     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\BlendModesOverlay.shader" />

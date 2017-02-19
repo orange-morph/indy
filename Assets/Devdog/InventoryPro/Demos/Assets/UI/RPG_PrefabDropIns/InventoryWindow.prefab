@@ -1329,9 +1329,13 @@ MonoBehaviour:
   _showAnimation:
     motion: {fileID: 0}
     speed: 1
+    crossFade: 0
+    crossFadeSpeed: 0.3
   _hideAnimation:
     motion: {fileID: 0}
     speed: 1
+    crossFade: 0
+    crossFadeSpeed: 0.3
   showAudioClip:
     audioClip: {fileID: 0}
     volume: 1
@@ -1843,17 +1847,7 @@ MonoBehaviour:
   container: {fileID: 22434952}
   itemButtonPrefab: {fileID: 0}
   filters:
-    filters:
-    - restrictionType: 0
-      filterType: 1
-      categoryValue: {fileID: 0}
-      statDefinitionValue: {fileID: 0}
-      rarityValue: {fileID: 0}
-      stringValue: Devdog.InventorySystem.SkillExampleInventoryItemType, Assembly-CSharp,
-        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      boolValue: 0
-      floatValue: 0
-      intValue: 0
+    filters: []
     matchType: 0
   ignoreItemLayoutSizes: 0
   sortButton: {fileID: 11407518}
@@ -2032,8 +2026,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dragSpeed: 1
-  preventFromGoingOutOfBounds: 0
-  spacing: {x: 100, y: 100}
   onClickBringToForeground: 1
   onWindowShowBringToForeground: 1
   maxForegroundIndex: 10
@@ -2216,7 +2208,6 @@ MonoBehaviour:
         Culture=neutral, PublicKeyToken=null
       boolValue: 0
       floatValue: 0
-      intValue: 0
     matchType: 0
   ignoreItemLayoutSizes: 1
   _initialCollectionSize: 4
@@ -2801,7 +2792,7 @@ MonoBehaviour:
   m_FillOrigin: 0
 --- !u!114 &11492538
 MonoBehaviour:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 178530}

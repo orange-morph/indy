@@ -99,9 +99,6 @@ namespace Devdog.InventoryPro
         [Required]
         public ItemDropHandlerBase itemDropHandler;
 
-        [Header("Use distance")]
-        public float useObjectDistance = 10.0f;
-
         [Header("Cursor pickup & usage")]
         public CursorIcon pickupCursor;
         public CursorIcon useCursor;

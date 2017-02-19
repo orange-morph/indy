@@ -38,7 +38,7 @@ namespace Devdog.InventoryPro
             var extenderCollection = GetExtenderCollection();
             if (extenderCollection == null)
             {
-                Debug.Log("Can't use bag, no collection found with interface " + typeof(ICollectionExtender));
+                DevdogLogger.LogWarning("Can't use bag, no collection found with interface " + typeof(ICollectionExtender));
                 return -2;
             }
 
@@ -56,7 +56,7 @@ namespace Devdog.InventoryPro
             var player = PlayerManager.instance.currentPlayer;
             if (player == null)
             {
-                Debug.Log("No current player, can't get collections.");
+                DevdogLogger.LogWarning("No current player, can't get collections.");
                 return null;
             }
 
@@ -80,7 +80,7 @@ namespace Devdog.InventoryPro
             var extenderCollection = GetExtenderCollection();
             if (extenderCollection == null)
             {
-                Debug.Log("Can't use bag, no inventory found with extender collection");
+                DevdogLogger.LogWarning("Can't use bag, no inventory found with extender collection");
                 return;
             }
 
@@ -97,7 +97,7 @@ namespace Devdog.InventoryPro
             var extenderCollection = GetExtenderCollection();
             if (extenderCollection == null)
             {
-                Debug.Log("Can't unequip bag, no inventory found with extender collection");
+                DevdogLogger.LogWarning("Can't unequip bag, no inventory found with extender collection");
                 return false;
             }
 
@@ -109,11 +109,37 @@ namespace Devdog.InventoryPro
             var extenderCollection = GetExtenderCollection();
             if (extenderCollection == null)
             {
-                Debug.Log("Can't unequip bag, no inventory found with extender collection");
+                DevdogLogger.LogWarning("Can't unequip bag, no inventory found with extender collection");
                 return false;
             }
 
-            return extenderCollection.extendingCollection.CanRemoveSlots(extendBySlots);
+            var slot = extenderCollection.extendingCollection.FindFirstEmptySlot(this);
+            if (slot == -1)
+            {
+                return false;
+            }
+
+            return CanUnEquip(extenderCollection.extendingCollection, (uint)slot);
+        }
+
+        public bool CanUnEquip(ItemCollectionBase toCollection, uint toIndex)
+        {
+            var extenderCollection = GetExtenderCollection();
+            if (extenderCollection == null)
+            {
+                DevdogLogger.LogWarning("Can't unequip bag, no inventory found with extender collection");
+                return false;
+            }
+
+            // If the item is placed inside the slots it's supposed to rmove it should fail...
+            var clearSlots = extendBySlots + layoutSize;
+            var c = extenderCollection.extendingCollection;
+            if (toIndex > toCollection.items.Length - clearSlots)
+            {
+                return false;
+            }
+
+            return c.CanRemoveSlots(clearSlots);
         }
     }
 }

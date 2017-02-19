@@ -48,21 +48,28 @@ namespace Devdog.InventoryPro
 
         protected virtual void Start()
         {
-            TriggerManager.OnCurrentTriggerChanged += (before, after) =>
+            TriggerManager.OnCurrentTriggerChanged += OnTriggerChanged;
+        }
+
+        protected virtual void OnDestroy()
+        {
+            TriggerManager.OnCurrentTriggerChanged -= OnTriggerChanged;
+        }
+
+        protected virtual void OnTriggerChanged(TriggerBase before, TriggerBase after) 
+        {
+            if (after != null)
             {
-                if (after != null)
+                var info = after.GetComponent<ISelectableObjectInfo>();
+                if (info != null)
                 {
-                    var info = after.GetComponent<ISelectableObjectInfo>();
-                    if (info != null)
-                    {
-                        currentSelectableObject = info;
-                    }
+                    currentSelectableObject = info;
                 }
-                else
-                {
-                    currentSelectableObject = null;
-                }
-            };
+            }
+            else
+            {
+                currentSelectableObject = null;
+            }
         }
 
         public void Repaint(ISelectableObjectInfo objectInfo)

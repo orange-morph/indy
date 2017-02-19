@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Devdog.General.ThirdParty.UniLinq;
 using System.Text;
+using Devdog.General;
 using UnityEngine;
 using UnityEngine.Assertions;
 using Object = UnityEngine.Object;
@@ -28,7 +29,37 @@ namespace Devdog.InventoryPro
         /// </summary>
         public void FromContainer(IInventoryItemContainer container)
         {
-            items = container.items.Select(o => new InventoryItemSerializationModel(o)).ToArray();
+            // Serialize based on inventory item serialization model.
+            items = new InventoryItemSerializationModel[container.items.Length];
+            for (int i = 0; i < container.items.Length; i++)
+            {
+                var item = container.items[i];
+                InventoryItemSerializationModel inst = null;
+                if (item != null)
+                {
+                    var classes = ReflectionUtility.GetAllClassesWithAttribute(typeof(SerializationModelAttribute), true);
+                    Type serializationModel = typeof(InventoryItemSerializationModel);
+
+                    foreach (var c in classes)
+                    {
+                        var attrib = (SerializationModelAttribute)c.GetCustomAttributes(typeof(SerializationModelAttribute), true).First();
+                        if (c == item.GetType())
+                        {
+                            DevdogLogger.LogVerbose("Using custom serialization model for " + item.GetType().Name + " - " + attrib.type.Name);
+                            serializationModel = attrib.type;
+                        }
+                    }
+
+                    inst = (InventoryItemSerializationModel)Activator.CreateInstance(serializationModel);
+                    inst.FromItem(item);
+                }
+                else
+                {
+                    inst = new InventoryItemSerializationModel(null);
+                }
+
+                items[i] = inst;
+            }
         }
 
         /// <summary>

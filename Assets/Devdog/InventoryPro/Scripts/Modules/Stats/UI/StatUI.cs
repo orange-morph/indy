@@ -99,7 +99,7 @@ namespace Devdog.InventoryPro.UI
                 statName.text = stat.definition.statName;
             }
 
-            if (useValueInterpolation)
+            if (useValueInterpolation && gameObject.activeInHierarchy)
             {
                 StartCoroutine(_RepaintInterpolated(stat));
             }
@@ -116,7 +116,7 @@ namespace Devdog.InventoryPro.UI
             while (timer < 1f)
             {
                 float val = Mathf.Lerp(_deltaStatValue, _aimStatValue, interpolationCurve.Evaluate(timer));
-                visualizer.Repaint(val, stat.definition.maxValue);
+                visualizer.Repaint(val, stat.currentMaxValue);
 
                 timer += Time.deltaTime * interpolationSpeed;
                 yield return null;

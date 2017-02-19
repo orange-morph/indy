@@ -109,6 +109,10 @@ namespace Devdog.General.UI
             }
         }
 
+
+        private UIWindow _parentWindow;
+
+
         protected virtual void Awake()
         {
             if (_showAnimation.motion != null)
@@ -136,6 +140,12 @@ namespace Devdog.General.UI
 
         protected void OnDestroy()
         {
+
+            if (_parentWindow != null)
+            {
+                _parentWindow.OnShow -= OnShow;
+                _parentWindow.OnHide -= Hide;
+            }
 
 #if UNITY_5_4_OR_NEWER
             UnityEngine.SceneManagement.SceneManager.sceneLoaded -= SceneLoaded;
@@ -165,6 +175,16 @@ namespace Devdog.General.UI
             else
             {
                 isVisible = true;
+            }
+
+            if (transform.parent != null)
+            {
+                _parentWindow = transform.parent.GetComponentInParent<UIWindow>();
+                if (_parentWindow != null)
+                {
+                    _parentWindow.OnShow += OnShow;
+                    _parentWindow.OnHide += Hide;
+                }
             }
         }
 
@@ -208,6 +228,11 @@ namespace Devdog.General.UI
                 InputManager.RemovePlayerLimitInput(gameObject);
             }
 
+            foreach (var page in pages)
+            {
+                page.NotifyWindowHidden();
+            }
+
             onHideActions.Invoke();
             if (OnHide != null)
             {
@@ -225,6 +250,11 @@ namespace Devdog.General.UI
             if (blockPlayerInput)
             {
                 InputManager.LimitPlayerInputTo(gameObject);
+            }
+
+            foreach (var page in pages)
+            {
+                page.NotifyWindowShown();
             }
 
             onShowActions.Invoke();

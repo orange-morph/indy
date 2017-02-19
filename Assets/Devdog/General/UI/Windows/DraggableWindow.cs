@@ -10,11 +10,6 @@ namespace Devdog.General.UI
         [Header("Dragging")]
         public float dragSpeed = 1.0f;
 
-
-        [Header("Bounds")]
-        public bool preventFromGoingOutOfBounds = true;
-        public Vector2 spacing = new Vector2(100.0f, 100.0f);
-
         /// <summary>
         /// Once clicked should this draggable window be moved to the foreground?
         /// </summary>
@@ -32,8 +27,6 @@ namespace Devdog.General.UI
         public int maxForegroundIndex = 10;
 
         private Vector2 _dragOffset;
-        private Vector2 _maxPos;
-        private Vector2 _minPos;
         private RectTransform _rectTransform;
 
         /// <summary>
@@ -43,6 +36,7 @@ namespace Devdog.General.UI
 
 
         private UIWindow _window;
+
         public UIWindow window
         {
             get
@@ -55,17 +49,9 @@ namespace Devdog.General.UI
             set { _window = value; }
         }
 
-
-
         public void Awake()
         {
             _rectTransform = GetComponent<RectTransform>();
-
-            var w = _rectTransform.rect.width * _rectTransform.pivot.x;
-            var h = _rectTransform.rect.height * _rectTransform.pivot.y;
-            _minPos = new Vector2(w - spacing.x, h - spacing.y);
-            _maxPos = new Vector2(Screen.width + w - spacing.x, Screen.height + h - spacing.y);
-
             if (onWindowShowBringToForeground)
             {
                 window.OnShow += MoveToForeground;
@@ -80,11 +66,6 @@ namespace Devdog.General.UI
         public void OnDrag(PointerEventData eventData)
         {
             _rectTransform.anchoredPosition = new Vector3(eventData.position.x + _dragOffset.x * dragSpeed, eventData.position.y + _dragOffset.y * dragSpeed, 0.0f);
-
-            if (preventFromGoingOutOfBounds)
-            {
-                _rectTransform.position = Clamp(_rectTransform.position, _minPos, _maxPos);
-            }
         }
 
         private Vector2 Clamp(Vector2 a, Vector2 min, Vector2 max)

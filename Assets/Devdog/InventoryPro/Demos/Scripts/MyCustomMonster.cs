@@ -102,7 +102,7 @@ namespace Devdog.InventoryPro.Demo
             trigger = GetComponent<Trigger>();
             trigger.window = new UIWindowField() { window = InventoryManager.instance.loot.window };
             trigger.enabled = false; // Only need it once the monster dies
-
+            InventoryManager.instance.loot.window.OnHide += OnLootWindowHide;
 
             lootable = gameObject.GetComponent<LootableObject>();
             if (lootable == null)

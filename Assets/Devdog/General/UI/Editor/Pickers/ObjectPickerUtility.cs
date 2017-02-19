@@ -289,7 +289,7 @@ namespace Devdog.General.Editors
                 case EventType.DragPerform:
                     if (dropRect.Contains(Event.current.mousePosition) && GUI.enabled)
                     {
-                        UnityEngine.Object[] objectReferences = DragAndDrop.objectReferences;
+                        UnityEngine.Object[] objectReferences = UnityEditor.DragAndDrop.objectReferences;
                         var object2 = objectReferences.FirstOrDefault();
                         if (object2 != null && !UnityEditor.EditorUtility.IsPersistent(object2))
                         {
@@ -298,7 +298,7 @@ namespace Devdog.General.Editors
 
                         if (object2 != null)
                         {
-                            DragAndDrop.visualMode = DragAndDropVisualMode.Generic;
+                            UnityEditor.DragAndDrop.visualMode = UnityEditor.DragAndDropVisualMode.Generic;
                             if (eventType == EventType.DragPerform && ValidateObjectFieldAssignment(new [] { object2 }, objType) != null)
                             {
                                 obj = object2;
@@ -312,12 +312,12 @@ namespace Devdog.General.Editors
 
                                 callback(obj);
 
-                                DragAndDrop.AcceptDrag();
-                                DragAndDrop.activeControlID = 0;
+                                UnityEditor.DragAndDrop.AcceptDrag();
+                                UnityEditor.DragAndDrop.activeControlID = 0;
                             }
                             else
                             {
-                                DragAndDrop.activeControlID = id;
+                                UnityEditor.DragAndDrop.activeControlID = id;
                             }
                             Event.current.Use();
                         }

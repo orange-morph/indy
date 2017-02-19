@@ -11,6 +11,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aee9c35122abd23458ddb18edd496d6a, type: 3}
   m_Name: ItemDatabase
   m_EditorClassIdentifier: 
+  plyAttributes:
+  - ID:
+      savedIdent: dd6ecb7e8c344da49cf11373207d9729
+    show: 1
+    category: Default
+  - ID:
+      savedIdent: 187478513b71498e8b0ab25d45ab5e02
+    show: 1
+    category: Default
+  - ID:
+      savedIdent: 0e069f5dbef5488d9faab49730ce6357
+    show: 1
+    category: Default
+  - ID:
+      savedIdent: b0adf0e8ccdd467f82ab7b362c67bfee
+    show: 1
+    category: Default
+  - ID:
+      savedIdent: a4e3c43dc16d42d1b8e8e841968fd685
+    show: 1
+    category: Default
   items:
   - {fileID: 11476484, guid: 4f6c5d3910c9f024c8df75227f0ed4f3, type: 2}
   - {fileID: 11439538, guid: b855851bf49ee9142aa3aa1f57a70a2d, type: 2}

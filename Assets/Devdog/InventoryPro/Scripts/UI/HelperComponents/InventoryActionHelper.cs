@@ -18,6 +18,8 @@ namespace Devdog.InventoryPro.UI
     [AddComponentMenu(InventoryPro.AddComponentMenuPath + "UI Helpers/Inventory Action helper")]
     public partial class InventoryActionHelper : MonoBehaviour
     {
+        public Color highlightColor = Color.yellow;
+
         private Sprite _slotMarkedStartSprite;
         private Color _slotMarkedStartColor;
 
@@ -37,7 +39,7 @@ namespace Devdog.InventoryPro.UI
                         if (image != null)
                         {
                             image.sprite = button.spriteState.highlightedSprite;
-                            image.color = Color.yellow; // TODO: Make dynamic!
+                            image.color = highlightColor;
                         }
                     }
                 }

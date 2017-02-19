@@ -19,11 +19,9 @@ MonoBehaviour:
   localPlayerLayer: 24
   equipmentLayer: 17
   itemWorldLayer: 20
-  useContextMenu: 0
+  useContextMenu: 1
   showConfirmationDialogWhenDroppingItem: 1
   useUnstackDialog: 1
-  mobileLongPressTime: 0.3
-  mobileDoubleTapTime: 0.4
   itemDropHandler: {fileID: 11400000, guid: 98c49c46bc8f5a943956f3214c190d3c, type: 2}
   useObjectDistance: 10
   pickupCursor:
@@ -60,3 +58,5 @@ MonoBehaviour:
     keyCode: 0
     alwaysTriggerMobileActions: 0
     mobileAction: 3
+  mobileLongPressTime: 0.3
+  mobileDoubleTapTime: 0.4

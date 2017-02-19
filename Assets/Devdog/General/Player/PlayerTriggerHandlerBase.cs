@@ -67,6 +67,8 @@ namespace Devdog.General
                 if (input != null && input.AreKeysDown())
                 {
                     input.Use();
+                    selectedTrigger = null; // Clear it in case the trigger use removes the object. If not the next cycle will find the best trigger again.
+                    UpdateSelectedTrigger();
 //                    selectedTrigger.Toggle();
                 }
             }

@@ -28,6 +28,7 @@ namespace Devdog.InventoryPro
         [Category("Collections")]
         public InventoryNoticeMessage collectionDoesNotAllowType = new InventoryNoticeMessage("", "Does not allow type", NoticeDuration.Medium, Color.white);
         public InventoryNoticeMessage collectionFull = new InventoryNoticeMessage("", "{2} is full", NoticeDuration.Medium, Color.white);
+        public InventoryNoticeMessage collectionExceedingMaxWeight = new InventoryNoticeMessage("", "Item {0} is to heavy to pick up", NoticeDuration.Medium, Color.white);
         //public InventoryNoticeMessage collection;
         //public InventoryNoticeMessage collectionDoesNotAllowType;
 

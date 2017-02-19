@@ -157,6 +157,8 @@ namespace Devdog.InventoryPro
                 lootUI.AddCurrency(cur.currency, cur.amount);
             }
 
+            CopyItemsFromLootCollection();
+
             lootUI.OnRemovedItem += LootUIOnOnRemovedItem;
             lootUI.OnCurrencyChanged += LootUIOnOnCurrencyChanged;
             lootUI.window.Show();
@@ -166,11 +168,23 @@ namespace Devdog.InventoryPro
 
         public virtual bool OnTriggerUnUsed(Player player)
         {
+            CopyItemsFromLootCollection();
+            
             lootUI.OnRemovedItem -= LootUIOnOnRemovedItem;
             lootUI.OnCurrencyChanged -= LootUIOnOnCurrencyChanged;
             lootUI.window.Hide();
 
             return false;
+        }
+
+        protected void CopyItemsFromLootCollection()
+        {
+            // Copy over the items from the lootUI to make sure our flat array matches that of the lootUI collection (in case layout sized items are used)
+            items = new InventoryItemBase[lootUI.collectionSize];
+            for (int i = 0; i < items.Length; i++)
+            {
+                items[i] = lootUI[i].item;
+            }
         }
     }
 }

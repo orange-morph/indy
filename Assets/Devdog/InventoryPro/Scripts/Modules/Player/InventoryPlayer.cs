@@ -65,6 +65,8 @@ namespace Devdog.InventoryPro
             DevdogLogger.LogVerbose("Initializing InventoryPlayer", this);
             isInitialized = true;
 
+            UpdateEquipLocations(transform);
+
             stats.dataProviders.Add(new StatsProvider());
             stats.Prepare();
 
@@ -90,7 +92,6 @@ namespace Devdog.InventoryPro
         protected override void Awake()
         {
             base.Awake();
-            UpdateEquipLocations(transform);
             generalPlayer = GetComponent<Player>();
 
             if (isPlayerDynamicallyInstantiated == false)

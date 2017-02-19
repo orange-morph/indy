@@ -79,10 +79,7 @@ namespace Devdog.InventoryPro
                 if (toCollection[toSlot].item != null)
                     return false; // Slot is not empty, swap should have been called?
 
-//                toCollection.SetItem(toSlot, item); // Temp set it
-                bool canMove = _extendingCollection.CanRemoveSlots(bag.extendBySlots); // Check if allowed
-//                toCollection.SetItem(toSlot, null); // Remove
-
+                bool canMove = bag.CanUnEquip(toCollection, toSlot);
                 if (canMove == false)
                     return false;
 

@@ -67,8 +67,7 @@ namespace Devdog.InventoryPro
 
         public override bool CanUnUse(Player player)
         {
-            // base.CanUnUse(player);
-            return false; // It's not possible to un-use an ItemTrigger
+            return base.CanUnUse(player);
         }
     }
 }

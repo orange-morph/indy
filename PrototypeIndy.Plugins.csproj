@@ -91,6 +91,9 @@
     <Reference Include="SpriteTile">
       <HintPath>Assets\Plugins\SpriteTile\Core\SpriteTile.dll</HintPath>
     </Reference>
+    <Reference Include="Devdog.Internal">
+      <HintPath>Assets\Devdog\Internal\Devdog.Internal.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Standard Assets\CrossPlatformInput\Scripts\AxisTouchButton.cs" />
@@ -243,9 +246,6 @@
     <None Include="Assets\Plugins\SpriteTile\Resources\Sprites-DefaultNonTransparent.shader" />
     <None Include="Assets\Plugins\SpriteTile\Resources\Sprites-DiffuseNonTransparent.shader" />
     <None Include="Assets\Resources\Sprites\UI\uipack_rpg_sheet.xml" />
-    <None Include="Assets\SpriteTile\Read before importing demos!.txt" />
-    <None Include="Assets\SpriteTile\SpriteTile changelog.txt" />
-    <None Include="Assets\SpriteTile\UPGRADE GUIDE!.txt" />
     <None Include="Assets\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
     <None Include="Assets\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />
     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\BlendModesOverlay.shader" />

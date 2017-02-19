@@ -1054,6 +1054,11 @@ namespace Devdog.InventoryPro
         /// <returns>Returns true if the item was placed, false if not.</returns>
         public virtual bool AddItem(InventoryItemBase item, ICollection<InventoryItemBase> storedItems = null, bool repaint = true, bool fireEvents = true)
         {
+            if (item == null)
+            {
+                return false;
+            }
+            
             RebuildCounterIfDirty();
             using (new CollectionAvoidRebuildLock(this))
             {
@@ -1179,6 +1184,12 @@ namespace Devdog.InventoryPro
                 }
                 else
                 {
+                    if(item.weight * item.currentStackSize + GetWeight() > restrictMaxWeight)
+                    {
+                        InventoryManager.langDatabase.collectionExceedingMaxWeight.Show(item.name, item.description, collectionName);
+                        return false;
+                    }
+
                     InventoryManager.langDatabase.collectionFull.Show(item.name, item.description, collectionName);
                     return false;
                 }

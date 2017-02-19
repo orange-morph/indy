@@ -62,6 +62,11 @@ namespace Devdog.InventoryPro
             var list = new List<ItemAmountRow>(itemsToAdd.Count);
             for (int i = 0; i < itemsToAdd.Count; i++)
             {
+                if (itemsToAdd[i] == null)
+                {
+                    continue;
+                }
+                
                 uint stackCount = itemsToAdd[i].currentStackSize;
                 while (stackCount > 0)
                 {
@@ -155,6 +160,11 @@ namespace Devdog.InventoryPro
 
         public static InventoryItemBase[] EnforceMaxStackSize(InventoryItemBase item)
         {
+            if (item == null)
+            {
+                return new InventoryItemBase[0];
+            }
+
             if (item.currentStackSize <= item.maxStackSize)
             {
                 return new [] { item };

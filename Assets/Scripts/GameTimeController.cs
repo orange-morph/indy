@@ -45,7 +45,7 @@ public class GameTimeController : MonoBehaviour
     public Text infoText; // UI element used to display the game clock - set in UI
 
     [Header("Player Health and Energy Sliders")]
-    public Player2D player; // Assign in UI, will be needed to get / set health and energy
+    public MyPlayer2D player; // Assign in UI, will be needed to get / set health and energy
     public Slider healthSlider; // UI slider element used to display player health
     public Slider energySlider; // UI slider element used to display player energy
     

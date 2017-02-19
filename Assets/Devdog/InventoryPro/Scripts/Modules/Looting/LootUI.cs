@@ -34,6 +34,12 @@ namespace Devdog.InventoryPro
             protected set { _window = value; }
         }
 
+
+
+        // Resize the collection so there's no empty slots
+        public bool removeEmptySlots = true;
+
+
         protected override void Start()
         {
             base.Start();
@@ -60,7 +66,11 @@ namespace Devdog.InventoryPro
             bool canPutIn = canPutItemsInCollection;
             canPutItemsInCollection = true;
 
-            Resize((uint)items.Length, true); // Force resize, SetItems() doesn't force, hence the extra call.
+            if(removeEmptySlots)
+            {
+                Resize((uint)items.Length, true); // Force resize, SetItems() doesn't force, hence the extra call.
+            }
+            
             base.SetItems(newItems, setParent, repaint);
 
             canPutItemsInCollection = canPutIn;

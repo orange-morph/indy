@@ -32,7 +32,7 @@ namespace Devdog.InventoryPro
         private bool gotAllItems;
         private bool usedBandage;
         public Camera mainCamera;
-        public Player2D mainPlayer;
+        public MyPlayer2D mainPlayer;
         public VignetteAndChromaticAberration chromatic_Vignette;
 
         protected void Start()

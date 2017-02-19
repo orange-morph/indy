@@ -72,7 +72,7 @@ namespace Devdog.InventoryPro
             
             if (InventorySettingsManager.instance.settings.useContextMenu)
             {
-                base.OnPointerDown(eventData);
+                base.OnPointerUp(eventData);
                 return;
             }
 

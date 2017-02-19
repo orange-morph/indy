@@ -29,10 +29,10 @@ namespace Devdog.InventoryPro
 
         public InventoryItemSerializationModel(InventoryItemBase item)
         {
-            FromItem(item);   
+            FromItem(item);
         }
 
-        public void FromItem(InventoryItemBase item)
+        public virtual void FromItem(InventoryItemBase item)
         {
             if (item == null)
             {
@@ -49,7 +49,7 @@ namespace Devdog.InventoryPro
             this.stats = item.stats.Select(o => new StatDecoratorSerializationModel(o)).ToArray();
         }
 
-        public InventoryItemBase ToItem()
+        public virtual InventoryItemBase ToItem()
         {
             if (itemID < 0 || itemID > ItemManager.database.items.Length - 1)
             {

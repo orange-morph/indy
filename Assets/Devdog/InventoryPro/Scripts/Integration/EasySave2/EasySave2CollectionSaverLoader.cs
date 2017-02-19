@@ -30,7 +30,7 @@ namespace Devdog.InventoryPro.Integration.EasySave2
             using (ES2Writer writer = ES2Writer.Create(fileName, new ES2Settings() { fileMode = ES2Settings.ES2FileMode.Create }))
             {
                 writer.Write(serializedData, saveName);
-                writer.Save(false);
+                writer.Save(true);
             }
 
             callback(true); // Saved

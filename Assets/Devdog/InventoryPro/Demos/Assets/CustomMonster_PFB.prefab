@@ -1,5 +1,23 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-1276482734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 182462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2632322e0a058e8479100160b1fc5de0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _triggerMouseClick: 1
+  _triggerKeyCode: 0
+  useCursorIcon: 1
+  _cursorIcon:
+    texture: {fileID: 0}
+    hotspot: {x: 0, y: 0}
+    cursorMode: 0
 --- !u!1 &182462
 GameObject:
   m_ObjectHideFlags: 0
@@ -14,11 +32,11 @@ GameObject:
   - 114: {fileID: 11466740}
   - 195: {fileID: 19588496}
   - 114: {fileID: 11483012}
-  - 114: {fileID: 11435646}
   - 95: {fileID: 9528676}
   - 114: {fileID: 11498942}
   - 114: {fileID: 11440752}
   - 114: {fileID: 11495964}
+  - 114: {fileID: -1276482734}
   m_Layer: 25
   m_Name: CustomMonster_PFB
   m_TagString: Untagged
@@ -65,10 +83,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 182462}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.88, y: 0.87, z: -5.684}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -4.92, y: -2.0173101, z: -2.2130926}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 497796}
   m_Father: {fileID: 0}
@@ -82,7 +99,6 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 2.08, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 497796}
   m_RootOrder: 0
@@ -95,7 +111,6 @@ Transform:
   m_LocalRotation: {x: 0, y: 1, z: 0, w: -0.00000016292068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 418464}
   m_Father: {fileID: 413988}
@@ -185,7 +200,7 @@ TextMesh:
   m_GameObject: {fileID: 191180}
   m_Text: 'Kill me!
 
-    Click on me 3 times!'
+    I have a loot window!'
   m_OffsetZ: 0
   m_CharacterSize: 0.1
   m_LineSpacing: 1
@@ -211,19 +226,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationOffset: {x: 0, y: 180, z: 0}
---- !u!114 &11435646
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 182462}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd1dfa799551a324d9e37fe79f400124, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  windowPositionOffset: {x: 0.4, y: 1.5, z: -1}
-  windowRotationOffset: {x: 10, y: 90, z: 0}
 --- !u!114 &11440752
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -250,10 +252,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bba17b8c0dd098d428b48152874ef7be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _startStats: []
   walkSpeed: 2
   walkRadius: 10
-  useLootWindow: 0
-  corpseParticleEffectPrefab: {fileID: 0}
+  useLootWindow: 1
+  corpseParticleEffectPrefab: {fileID: 123740, guid: 9ebe5969b7c6da2408cf98c6b2a8aed5,
+    type: 2}
 --- !u!114 &11483012
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -265,7 +269,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e2eb5375650fef4ea2f71a05ee4500f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _name: Monster
+  _name: Monster 1
   _useHealth: 1
   _health: 100
   _maxHealth: 100
@@ -281,6 +285,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   useWhenPlayerComesInRange: 0
+  blockPlayerInput: 0
   _window:
     useDynamicSearch: 0
     name: 
@@ -288,9 +293,13 @@ MonoBehaviour:
   useAnimation:
     motion: {fileID: 0}
     speed: 1
+    crossFade: 0
+    crossFadeSpeed: 0.3
   unUseAnimation:
     motion: {fileID: 0}
     speed: 1
+    crossFade: 0
+    crossFadeSpeed: 0.3
   useAudioClip:
     audioClip: {fileID: 0}
     volume: 1

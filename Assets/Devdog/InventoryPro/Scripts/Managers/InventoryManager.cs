@@ -317,7 +317,7 @@ namespace Devdog.InventoryPro
         /// <returns></returns>
         public static bool AddItem(InventoryItemBase item, ICollection<InventoryItemBase> storedItems = null, bool repaint = true)
         {
-            Assert.IsTrue(item != null, "Given item is null - Can't add.");
+            Assert.IsNotNull(item, "Given item is null - Can't add.");
             Assert.IsTrue(_lootToCollections.Count > 0, "Can't add item, no collectionso attached to the current player");
 
             var currency = item as CurrencyInventoryItem;
