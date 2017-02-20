@@ -40,9 +40,10 @@ public class CompletePlayerController : MonoBehaviour {
     const int STATE_WALK_RIGHT = 2;
     const int STATE_WALK_UP = 3;
     const int STATE_WALK_DOWN = 4;
+    const int STATE_STAND_UP = 5;
 
     //string _currentDirection = "left";
-    int _currentAnimationState = STATE_IDLE;
+    int _currentAnimationState = STATE_STAND_UP;
 
     // initialization
     void Start()
