@@ -36,6 +36,7 @@ public class PlantBehaviour : MonoBehaviour {
     [Header("Plant Animations")]
     public Animation choppingAnimation; // the animation to be used when this plant is chopped by the player
     public Animation harvestingAnimation; // the animation to be used when this plant is harvested by the player
+    public Animation pickupAnimation; // the animation to be used when a seed / sprout is picked up by the player
 
     public BoxCollider2D plantCollider; // the collider object of the plant, for handling triggers
 
@@ -45,7 +46,6 @@ public class PlantBehaviour : MonoBehaviour {
 
     protected void Start()
     {
-        // Get the parent GameObject
         hovering = false;
         inRange = false;
         interacting = false;
@@ -75,9 +75,7 @@ public class PlantBehaviour : MonoBehaviour {
         }
 
         // if seeding -> initialise seeding behaviour
-
         // if fruiting -> initialise fruiting behaviour
-
     }
 
     void OnMouseOver()
@@ -93,7 +91,6 @@ public class PlantBehaviour : MonoBehaviour {
     void OnCollisionEnter2D(Collision2D coll)
     {
         inRange = true;
-        // on collider enter -> collider behaviour
     }
 
     void OnCollisionExit2D(Collision2D coll)
@@ -101,16 +98,8 @@ public class PlantBehaviour : MonoBehaviour {
         inRange = false;   
     }
 
-
     protected void FixedUpdate()
     {
-        // check for interaction with the plant
-        //if (Input.GetKeyDown(KeyCode.E))
-        //{
-        //    Debug.LogWarning("press E");
-        //}
-
-
         if (hovering && inRange && Input.GetKeyDown(KeyCode.E) )
         {
             // on interact -> interact behaviour (choppable or harvestable or fruiting) or whatever
@@ -118,11 +107,8 @@ public class PlantBehaviour : MonoBehaviour {
             Interact();
         }
 
-
-        // if seeding -> seed update behaviour
-
+        // if seeding -> seed spawning update behaviour
         // if fruiting -> fruit update behaviour
-
     }
 
     protected void Interact()
@@ -130,23 +116,28 @@ public class PlantBehaviour : MonoBehaviour {
         AudioSource audio = gameObject.AddComponent<AudioSource>();
         if (seed)
         {
+            // animate pickup
             audio.PlayOneShot(seedPickup);
         }
         else if (sprout)
         {
+            // animate pickup
             audio.PlayOneShot(sproutSound);
         }
         else if (juvenile)
         {
+            // animate short chop or harvest
             audio.PlayOneShot(juvenileSound);
         }
         else
         {
             if (choppable)
             {
+                // animate full chop
                 audio.PlayOneShot(chopSound);
             } else if (harvestable)
             {
+                // animate full harvest
                 audio.PlayOneShot(harvestSound);
             }
             
