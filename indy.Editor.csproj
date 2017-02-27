@@ -1,0 +1,537 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.20506</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{0C0417DF-FB64-1DB4-B497-FFC04AA3007D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AssemblyName>Assembly-CSharp-Editor</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Unity Full v3.5</TargetFrameworkProfile>
+    <CompilerResponseFile></CompilerResponseFile>
+    <UnityProjectType>Editor:5</UnityProjectType>
+    <UnityBuildTarget>StandaloneWindows:5</UnityBuildTarget>
+    <UnityVersion>5.5.0f3</UnityVersion>
+    <RootNamespace></RootNamespace>
+    <LangVersion Condition=" '$(VisualStudioVersion)' != '10.0' ">4</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Temp\UnityVS_bin\Debug\</OutputPath>
+    <IntermediateOutputPath>Temp\UnityVS_obj\Debug\</IntermediateOutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DefineConstants>DEBUG;TRACE;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_5_0;UNITY_5_5;UNITY_5;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_DUCK_TYPING;ENABLE_GENERICS;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_SPRITERENDERER_FLIPPING;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_RAKNET;ENABLE_UNET;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_HUB;ENABLE_CLOUD_PROJECT_ID;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_METRICS;ENABLE_EDITOR_METRICS_CACHING;INCLUDE_DYNAMIC_GI;INCLUDE_GI;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;INCLUDE_PUBNUB;ENABLE_PLAYMODE_TESTS_RUNNER;ENABLE_SCRIPTING_NEW_CSHARP_COMPILER;UNITY_STANDALONE_WIN;UNITY_STANDALONE;ENABLE_SUBSTANCE;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_UNITYWEBREQUEST;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_EVENT_QUEUE;ENABLE_CLUSTERINPUT;ENABLE_VIDEO;ENABLE_VR;ENABLE_WEBSOCKET_HOST;ENABLE_MONO;ENABLE_PROFILER;DEBUG;TRACE;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;UNITY_TEAM_LICENSE;ENABLE_VSTU;CROSS_PLATFORM_INPUT</DefineConstants>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Temp\UnityVS_bin\Release\</OutputPath>
+    <IntermediateOutputPath>Temp\UnityVS_obj\Release\</IntermediateOutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DefineConstants>TRACE;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_5_0;UNITY_5_5;UNITY_5;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_DUCK_TYPING;ENABLE_GENERICS;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_SPRITERENDERER_FLIPPING;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_RAKNET;ENABLE_UNET;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_HUB;ENABLE_CLOUD_PROJECT_ID;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_METRICS;ENABLE_EDITOR_METRICS_CACHING;INCLUDE_DYNAMIC_GI;INCLUDE_GI;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;INCLUDE_PUBNUB;ENABLE_PLAYMODE_TESTS_RUNNER;ENABLE_SCRIPTING_NEW_CSHARP_COMPILER;UNITY_STANDALONE_WIN;UNITY_STANDALONE;ENABLE_SUBSTANCE;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_UNITYWEBREQUEST;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_EVENT_QUEUE;ENABLE_CLUSTERINPUT;ENABLE_VIDEO;ENABLE_VR;ENABLE_WEBSOCKET_HOST;ENABLE_MONO;ENABLE_PROFILER;DEBUG;TRACE;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;UNITY_TEAM_LICENSE;ENABLE_VSTU;CROSS_PLATFORM_INPUT</DefineConstants>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="mscorlib" />
+    <Reference Include="System" />
+    <Reference Include="System.XML" />
+    <Reference Include="System.Core" />
+    <Reference Include="Boo.Lang" />
+    <Reference Include="UnityScript.Lang" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="UnityEngine">
+      <HintPath>Library\UnityAssemblies\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor">
+      <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.Advertisements">
+      <HintPath>Library\UnityAssemblies\UnityEditor.Advertisements.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework">
+      <HintPath>Library\UnityAssemblies\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.EditorTestsRunner">
+      <HintPath>Library\UnityAssemblies\UnityEditor.EditorTestsRunner.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.UI">
+      <HintPath>Library\UnityAssemblies\UnityEditor.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Networking">
+      <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.Networking">
+      <HintPath>Library\UnityAssemblies\UnityEditor.Networking.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.PlaymodeTestsRunner">
+      <HintPath>Library\UnityAssemblies\UnityEditor.PlaymodeTestsRunner.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.PlaymodeTestsRunner">
+      <HintPath>Library\UnityAssemblies\UnityEngine.PlaymodeTestsRunner.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.TreeEditor">
+      <HintPath>Library\UnityAssemblies\UnityEditor.TreeEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Analytics">
+      <HintPath>Library\UnityAssemblies\UnityEngine.Analytics.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.Analytics">
+      <HintPath>Library\UnityAssemblies\UnityEditor.Analytics.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.HoloLens">
+      <HintPath>Library\UnityAssemblies\UnityEditor.HoloLens.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.HoloLens">
+      <HintPath>Library\UnityAssemblies\UnityEngine.HoloLens.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.VR">
+      <HintPath>Library\UnityAssemblies\UnityEditor.VR.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.VR">
+      <HintPath>Library\UnityAssemblies\UnityEngine.VR.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.Graphs">
+      <HintPath>Library\UnityAssemblies\UnityEditor.Graphs.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.Android.Extensions">
+      <HintPath>Library\UnityAssemblies\UnityEditor.Android.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions">
+      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.Tizen.Extensions">
+      <HintPath>Library\UnityAssemblies\UnityEditor.Tizen.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.SamsungTV.Extensions">
+      <HintPath>Library\UnityAssemblies\UnityEditor.SamsungTV.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.WebGL.Extensions">
+      <HintPath>Library\UnityAssemblies\UnityEditor.WebGL.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.LinuxStandalone.Extensions">
+      <HintPath>Library\UnityAssemblies\UnityEditor.LinuxStandalone.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.WindowsStandalone.Extensions">
+      <HintPath>Library\UnityAssemblies\UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.OSXStandalone.Extensions">
+      <HintPath>Library\UnityAssemblies\UnityEditor.OSXStandalone.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
+      <HintPath>Library\UnityAssemblies\SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions.Xcode">
+      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions.Common">
+      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-CSharp-firstpass">
+      <HintPath>Library\ScriptAssemblies\Assembly-CSharp-firstpass.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>Library\ScriptAssemblies\Assembly-CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-UnityScript">
+      <HintPath>Library\ScriptAssemblies\Assembly-UnityScript.dll</HintPath>
+    </Reference>
+    <Reference Include="Devdog.Internal">
+      <HintPath>Assets\Devdog\Internal\Devdog.Internal.dll</HintPath>
+    </Reference>
+    <Reference Include="DialogueSystem">
+      <HintPath>Assets\Dialogue System\DLLs\DialogueSystem.dll</HintPath>
+    </Reference>
+    <Reference Include="LuaInterpreter">
+      <HintPath>Assets\Dialogue System\DLLs\LuaInterpreter.dll</HintPath>
+    </Reference>
+    <Reference Include="DialogueSystemEditors">
+      <HintPath>Assets\Dialogue System\DLLs\Editor\DialogueSystemEditors.dll</HintPath>
+    </Reference>
+    <Reference Include="LitJson">
+      <HintPath>Assets\Plugins\LitJson.dll</HintPath>
+    </Reference>
+    <Reference Include="SpriteTile">
+      <HintPath>Assets\Plugins\SpriteTile\Core\SpriteTile.dll</HintPath>
+    </Reference>
+    <Reference Include="TileEditor">
+      <HintPath>Assets\Plugins\SpriteTile\Editor\TileEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-UnityScript">
+      <HintPath>Library\ScriptAssemblies\Assembly-UnityScript.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="indy.Plugins.csproj">
+      <Project>{88A5E2EA-930C-5B30-DB6C-9D265C887423}</Project>
+      <Name>indy.Plugins</Name>
+    </ProjectReference>
+    <ProjectReference Include="indy.csproj">
+      <Project>{60A91E7D-E5B4-DBBC-04B0-902279451938}</Project>
+      <Name>indy</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Assets\Devdog\General\Editor\GameRules\Attributes\HidesGameRuleAttribute.cs" />
+    <Compile Include="Assets\Devdog\General\Editor\GameRules\DefaultRules\DefaultManagersRule.cs" />
+    <Compile Include="Assets\Devdog\General\Editor\GameRules\DefaultRules\MainCameraRule.cs" />
+    <Compile Include="Assets\Devdog\General\Editor\GameRules\DefaultRules\ManagersRuleBase.cs" />
+    <Compile Include="Assets\Devdog\General\Editor\GameRules\DefaultRules\MissingComponentReferencesRule.cs" />
+    <Compile Include="Assets\Devdog\General\Editor\GameRules\DefaultRules\MonoBehaviourScriptNameRule.cs" />
+    <Compile Include="Assets\Devdog\General\Editor\GameRules\DefaultRules\ReplacedByAttributeRule.cs" />
+    <Compile Include="Assets\Devdog\General\Editor\GameRules\DefaultRules\RequiredAttributeRule.cs" />
+    <Compile Include="Assets\Devdog\General\Editor\GameRules\DefaultRules\UnratedAssetsRule.cs" />
+    <Compile Include="Assets\Devdog\General\Editor\GameRules\GameRuleAction.cs" />
+    <Compile Include="Assets\Devdog\General\Editor\GameRules\GameRuleBase.cs" />
+    <Compile Include="Assets\Devdog\General\Editor\GameRules\GameRuleIssue.cs" />
+    <Compile Include="Assets\Devdog\General\Editor\GameRules\GameRulesWindow.cs" />
+    <Compile Include="Assets\Devdog\General\Editor\GameRules\Interfaces\IGameRule.cs" />
+    <Compile Include="Assets\Devdog\General\Editor\ModuleList.cs" />
+    <Compile Include="Assets\Devdog\General\Editor\ProductLookup.cs" />
+    <Compile Include="Assets\Devdog\General\Editor\ProductRatingUtility.cs" />
+    <Compile Include="Assets\Devdog\General\Editor\RateAssetEditorWindow.cs" />
+    <Compile Include="Assets\Devdog\General\Integrations\InventoryPro\Editor\InventoryProInventoryItemBaseDrawer.cs" />
+    <Compile Include="Assets\Devdog\General\Localization\Editor\ChangeKeyEditorWindow.cs" />
+    <Compile Include="Assets\Devdog\General\Localization\Editor\Drawers\LocalizedAudioClipDrawer.cs" />
+    <Compile Include="Assets\Devdog\General\Localization\Editor\Drawers\LocalizedObjectDrawerBase.cs" />
+    <Compile Include="Assets\Devdog\General\Localization\Editor\Drawers\LocalizedSpriteDrawer.cs" />
+    <Compile Include="Assets\Devdog\General\Localization\Editor\Drawers\LocalizedStringDrawer.cs" />
+    <Compile Include="Assets\Devdog\General\Localization\Editor\Drawers\LocalizedTextureEditor.cs" />
+    <Compile Include="Assets\Devdog\General\Localization\Editor\Drawers\LocalizedUnityEngineObjectDrawer.cs" />
+    <Compile Include="Assets\Devdog\General\Localization\Editor\Editors\LocalizedAudioClipEditor.cs" />
+    <Compile Include="Assets\Devdog\General\Localization\Editor\Editors\LocalizedObjectEditorBase.cs" />
+    <Compile Include="Assets\Devdog\General\Localization\Editor\Editors\LocalizedSpriteEditor.cs" />
+    <Compile Include="Assets\Devdog\General\Localization\Editor\Editors\LocalizedStringEditor.cs" />
+    <Compile Include="Assets\Devdog\General\Localization\Editor\Editors\LocalizedTextureEditor.cs" />
+    <Compile Include="Assets\Devdog\General\Localization\Editor\Editors\LocalizedUnityEngineObjectEditor.cs" />
+    <Compile Include="Assets\Devdog\General\Localization\Editor\LocalizationEditorUtility.cs" />
+    <Compile Include="Assets\Devdog\General\Localization\Editor\LocalizationEditorWindow.cs" />
+    <Compile Include="Assets\Devdog\General\Managers\Editor\GettingStartedEditorBase.cs" />
+    <Compile Include="Assets\Devdog\General\Managers\Editor\IntegrationHelperEditorBase.cs" />
+    <Compile Include="Assets\Devdog\General\Managers\Editor\LocalizationManagerEditor.cs" />
+    <Compile Include="Assets\Devdog\General\Managers\Editor\NewsletterEditorUtility.cs" />
+    <Compile Include="Assets\Devdog\General\Serialization\Attributes\Editor\ForceCustomObjectPickerAttributeEditor.cs" />
+    <Compile Include="Assets\Devdog\General\Serialization\Attributes\Editor\InspectorReadOnlyAttributeEditor.cs" />
+    <Compile Include="Assets\Devdog\General\Serialization\Attributes\Editor\RequiredAttributeEditor.cs" />
+    <Compile Include="Assets\Devdog\General\Serialization\Editor\AotHelpers.cs" />
+    <Compile Include="Assets\Devdog\General\Serialization\Editor\BetterMonoBehaviourEditor.cs" />
+    <Compile Include="Assets\Devdog\General\Serialization\Editor\BetterScriptableObjectEditor.cs" />
+    <Compile Include="Assets\Devdog\General\Serialization\Editor\BetterUnityEditorBase.cs" />
+    <Compile Include="Assets\Devdog\General\Serialization\Editor\CustomDrawers\AssetDrawer.cs" />
+    <Compile Include="Assets\Devdog\General\Triggers\Editor\TriggerEditor.cs" />
+    <Compile Include="Assets\Devdog\General\Triggers\Editor\TriggerRangeHandlerEditor.cs" />
+    <Compile Include="Assets\Devdog\General\UI\Editor\Attributes\CustomDrawerAttribute.cs" />
+    <Compile Include="Assets\Devdog\General\UI\Editor\Attributes\CustomObjectPickerAttribute.cs" />
+    <Compile Include="Assets\Devdog\General\UI\Editor\CrudEditors\EditorCrudBase.cs" />
+    <Compile Include="Assets\Devdog\General\UI\Editor\CrudEditors\EmptyEditor.cs" />
+    <Compile Include="Assets\Devdog\General\UI\Editor\CrudEditors\IEditorCrud.cs" />
+    <Compile Include="Assets\Devdog\General\UI\Editor\Helpers\ColorBlock.cs" />
+    <Compile Include="Assets\Devdog\General\UI\Editor\Helpers\FoldoutBlock.cs" />
+    <Compile Include="Assets\Devdog\General\UI\Editor\Helpers\FoldoutBlockUtility.cs" />
+    <Compile Include="Assets\Devdog\General\UI\Editor\Helpers\GUIDisabledBlock.cs" />
+    <Compile Include="Assets\Devdog\General\UI\Editor\Helpers\GUIMatrixBlock.cs" />
+    <Compile Include="Assets\Devdog\General\UI\Editor\Helpers\GroupBlock.cs" />
+    <Compile Include="Assets\Devdog\General\UI\Editor\Helpers\IndentBlock.cs" />
+    <Compile Include="Assets\Devdog\General\UI\Editor\Helpers\ScrollableBlock.cs" />
+    <Compile Include="Assets\Devdog\General\UI\Editor\Helpers\VerticalLayoutBlock.cs" />
+    <Compile Include="Assets\Devdog\General\UI\Editor\Other\BetterEditorWindow.cs" />
+    <Compile Include="Assets\Devdog\General\UI\Editor\Other\DerivedTypeInformation.cs" />
+    <Compile Include="Assets\Devdog\General\UI\Editor\Other\EditorStyles.cs" />
+    <Compile Include="Assets\Devdog\General\UI\Editor\Other\EditorUtility.cs" />
+    <Compile Include="Assets\Devdog\General\UI\Editor\Pickers\GenericObjectPickerBaseEditor.cs" />
+    <Compile Include="Assets\Devdog\General\UI\Editor\Pickers\ObjectPickerBaseEditor.cs" />
+    <Compile Include="Assets\Devdog\General\UI\Editor\Pickers\ObjectPickerUtility.cs" />
+    <Compile Include="Assets\Devdog\General\UI\Editor\Pickers\ScriptPickerEditor.cs" />
+    <Compile Include="Assets\Devdog\General\UI\Editor\Pickers\ScriptableObjectPickerEditor.cs" />
+    <Compile Include="Assets\Devdog\General\UI\Editor\Pickers\UnityEngineObjectPickerEditor.cs" />
+    <Compile Include="Assets\Devdog\General\UI\Editor\QuestWindowUIFieldEditor.cs" />
+    <Compile Include="Assets\Devdog\General\UI\Editor\ReflectionDrawerStyles.cs" />
+    <Compile Include="Assets\Devdog\General\UI\Editor\ReflectionDrawerUtility.cs" />
+    <Compile Include="Assets\Devdog\General\UI\Editor\ReflectionDrawers\AnimationCurveDrawer.cs" />
+    <Compile Include="Assets\Devdog\General\UI\Editor\ReflectionDrawers\ArrayDrawer.cs" />
+    <Compile Include="Assets\Devdog\General\UI\Editor\ReflectionDrawers\BoolDrawer.cs" />
+    <Compile Include="Assets\Devdog\General\UI\Editor\ReflectionDrawers\ChildrenValueDrawerBase.cs" />
+    <Compile Include="Assets\Devdog\General\UI\Editor\ReflectionDrawers\ClassDrawer.cs" />
+    <Compile Include="Assets\Devdog\General\UI\Editor\ReflectionDrawers\ColorDrawer.cs" />
+    <Compile Include="Assets\Devdog\General\UI\Editor\ReflectionDrawers\DictionaryDrawer.cs" />
+    <Compile Include="Assets\Devdog\General\UI\Editor\ReflectionDrawers\DrawerBase.cs" />
+    <Compile Include="Assets\Devdog\General\UI\Editor\ReflectionDrawers\EnumDrawer.cs" />
+    <Compile Include="Assets\Devdog\General\UI\Editor\ReflectionDrawers\FloatDrawer.cs" />
+    <Compile Include="Assets\Devdog\General\UI\Editor\ReflectionDrawers\IntDrawer.cs" />
+    <Compile Include="Assets\Devdog\General\UI\Editor\ReflectionDrawers\InterfaceDrawer.cs" />
+    <Compile Include="Assets\Devdog\General\UI\Editor\ReflectionDrawers\Interfaces\IChildrenDrawer.cs" />
+    <Compile Include="Assets\Devdog\General\UI\Editor\ReflectionDrawers\LayermaskDrawer.cs" />
+    <Compile Include="Assets\Devdog\General\UI\Editor\ReflectionDrawers\QuaternionDrawer.cs" />
+    <Compile Include="Assets\Devdog\General\UI\Editor\ReflectionDrawers\SimpleValueDrawer.cs" />
+    <Compile Include="Assets\Devdog\General\UI\Editor\ReflectionDrawers\StringDrawer.cs" />
+    <Compile Include="Assets\Devdog\General\UI\Editor\ReflectionDrawers\UintDrawer.cs" />
+    <Compile Include="Assets\Devdog\General\UI\Editor\ReflectionDrawers\UnityObjectDrawer.cs" />
+    <Compile Include="Assets\Devdog\General\UI\Editor\ReflectionDrawers\ValueTypeDrawer.cs" />
+    <Compile Include="Assets\Devdog\General\UI\Editor\ReflectionDrawers\Vec2Drawer.cs" />
+    <Compile Include="Assets\Devdog\General\UI\Editor\ReflectionDrawers\Vec3Drawer.cs" />
+    <Compile Include="Assets\Devdog\General\UI\Editor\ReflectionDrawers\Vec4Drawer.cs" />
+    <Compile Include="Assets\Devdog\General\UI\Windows\Editor\UIWindowEditor.cs" />
+    <Compile Include="Assets\Devdog\General\Utilities\Editor\EditorReflectionUtility.cs" />
+    <Compile Include="Assets\Devdog\General\Utilities\Editor\ScriptableObjectUtility.cs" />
+    <Compile Include="Assets\Devdog\InventoryPro\Scripts\Collections\Editor\ItemCollectionBaseEditor.cs" />
+    <Compile Include="Assets\Devdog\InventoryPro\Scripts\Currency\Editor\CurrencyDecoratorEditor.cs" />
+    <Compile Include="Assets\Devdog\InventoryPro\Scripts\Currency\Editor\CurrencyUIEditor.cs" />
+    <Compile Include="Assets\Devdog\InventoryPro\Scripts\Editor\GameRules\DeprecatedItemDatabase.cs" />
+    <Compile Include="Assets\Devdog\InventoryPro\Scripts\Editor\GameRules\DeprecatedItemPrefabRule.cs" />
+    <Compile Include="Assets\Devdog\InventoryPro\Scripts\Editor\GameRules\DeprecatedItemsRule.cs" />
+    <Compile Include="Assets\Devdog\InventoryPro\Scripts\Editor\GameRules\InventoryItemBaseUsedRule.cs" />
+    <Compile Include="Assets\Devdog\InventoryPro\Scripts\Editor\GameRules\InventoryPlayerRule.cs" />
+    <Compile Include="Assets\Devdog\InventoryPro\Scripts\Editor\GameRules\InventoryProManagersRule.cs" />
+    <Compile Include="Assets\Devdog\InventoryPro\Scripts\Integration\NodeCanvas\Editor\CustomInventoryItemBaseDrawer.cs" />
+    <Compile Include="Assets\Devdog\InventoryPro\Scripts\Integration\PlayMaker\Other\Editor\InventoryItemBasePlaymakerWrapperEditor.cs" />
+    <Compile Include="Assets\Devdog\InventoryPro\Scripts\Integration\UFPS\Editor\ConsumableUFPSInventoryItemEditor.cs" />
+    <Compile Include="Assets\Devdog\InventoryPro\Scripts\Integration\UFPS\Editor\EquippableUFPSInventoryItemEditor.cs" />
+    <Compile Include="Assets\Devdog\InventoryPro\Scripts\Integration\UFPS\Editor\UnitTypeUFPSInventoryItemEditor.cs" />
+    <Compile Include="Assets\Devdog\InventoryPro\Scripts\Integration\UMA\Items\Editor\UMAEquippableInventoryItemEditor.cs" />
+    <Compile Include="Assets\Devdog\InventoryPro\Scripts\Integration\plyGame\Diaq\Editor\InventoryDiaQRewardInfo.cs" />
+    <Compile Include="Assets\Devdog\InventoryPro\Scripts\Integration\plyGame\ItemTypes\Editor\plyGameConsumableInventoryItemEditor.cs" />
+    <Compile Include="Assets\Devdog\InventoryPro\Scripts\Integration\plyGame\ItemTypes\Editor\plyGameEquippableInventoryItemEditor.cs" />
+    <Compile Include="Assets\Devdog\InventoryPro\Scripts\Integration\plyGame\ItemTypes\Editor\plyGameSkillInventoryItemEditor.cs" />
+    <Compile Include="Assets\Devdog\InventoryPro\Scripts\Integration\plyGame\MainEditors\Editor\plyStatsEditor.cs" />
+    <Compile Include="Assets\Devdog\InventoryPro\Scripts\Integration\plyGame\ObjectPickers\Editor\InventoryPlySkillPrefabPickerBase.cs" />
+    <Compile Include="Assets\Devdog\InventoryPro\Scripts\Integration\plyGame\plyBlox\Fields\Editor\InventoryItemBaseFieldData_Handler.cs" />
+    <Compile Include="Assets\Devdog\InventoryPro\Scripts\Items\Editor\CurrencyInventoryItem.cs" />
+    <Compile Include="Assets\Devdog\InventoryPro\Scripts\Items\Editor\EquippableInventoryItemEditor.cs" />
+    <Compile Include="Assets\Devdog\InventoryPro\Scripts\Items\Editor\InventoryItemBaseEditor.cs" />
+    <Compile Include="Assets\Devdog\InventoryPro\Scripts\Items\Editor\ItemAmountRowEditor.cs" />
+    <Compile Include="Assets\Devdog\InventoryPro\Scripts\Items\Editor\ItemPouchInventoryItemEditor.cs" />
+    <Compile Include="Assets\Devdog\InventoryPro\Scripts\Items\Editor\StatRequirementEditor.cs" />
+    <Compile Include="Assets\Devdog\InventoryPro\Scripts\Managers\Editor\Databases\ItemDatabaseEditor.cs" />
+    <Compile Include="Assets\Devdog\InventoryPro\Scripts\Managers\Editor\Databases\LangDatabaseEditor.cs" />
+    <Compile Include="Assets\Devdog\InventoryPro\Scripts\Managers\Editor\DocumentationLinkEditor.cs" />
+    <Compile Include="Assets\Devdog\InventoryPro\Scripts\Managers\Editor\EasySetupEditor.cs" />
+    <Compile Include="Assets\Devdog\InventoryPro\Scripts\Managers\Editor\GettingStartedEditor.cs" />
+    <Compile Include="Assets\Devdog\InventoryPro\Scripts\Managers\Editor\IntegrationHelperEditor.cs" />
+    <Compile Include="Assets\Devdog\InventoryPro\Scripts\Managers\Editor\InventoryEditorCrudBase.cs" />
+    <Compile Include="Assets\Devdog\InventoryPro\Scripts\Managers\Editor\InventoryEditors\Crafting\CraftingBlueprintEditor.cs" />
+    <Compile Include="Assets\Devdog\InventoryPro\Scripts\Managers\Editor\InventoryEditors\Crafting\CraftingCategoryEditor.cs" />
+    <Compile Include="Assets\Devdog\InventoryPro\Scripts\Managers\Editor\InventoryEditors\Crafting\CraftingEmptyEditor.cs" />
+    <Compile Include="Assets\Devdog\InventoryPro\Scripts\Managers\Editor\InventoryEditors\Crafting\Pickers\CraftingBlueprintObjectPickerEditor.cs" />
+    <Compile Include="Assets\Devdog\InventoryPro\Scripts\Managers\Editor\InventoryEditors\Crafting\Pickers\CraftingCategoryObjectPickerEditor.cs" />
+    <Compile Include="Assets\Devdog\InventoryPro\Scripts\Managers\Editor\InventoryEditors\Currency\CurrencyEditor.cs" />
+    <Compile Include="Assets\Devdog\InventoryPro\Scripts\Managers\Editor\InventoryEditors\Currency\Pickers\CurrencyObjectPickerEditor.cs" />
+    <Compile Include="Assets\Devdog\InventoryPro\Scripts\Managers\Editor\InventoryEditors\EmptyEditor.cs" />
+    <Compile Include="Assets\Devdog\InventoryPro\Scripts\Managers\Editor\InventoryEditors\Equipment\EquipmentTypeEditor.cs" />
+    <Compile Include="Assets\Devdog\InventoryPro\Scripts\Managers\Editor\InventoryEditors\Equipment\Pickers\EquipmentTypeObjectPickerEditor.cs" />
+    <Compile Include="Assets\Devdog\InventoryPro\Scripts\Managers\Editor\InventoryEditors\InventoryProObjectPickerBase.cs" />
+    <Compile Include="Assets\Devdog\InventoryPro\Scripts\Managers\Editor\InventoryEditors\Items\ItemCategoryEditor.cs" />
+    <Compile Include="Assets\Devdog\InventoryPro\Scripts\Managers\Editor\InventoryEditors\Items\ItemEditor.cs" />
+    <Compile Include="Assets\Devdog\InventoryPro\Scripts\Managers\Editor\InventoryEditors\Items\ItemRarityEditor.cs" />
+    <Compile Include="Assets\Devdog\InventoryPro\Scripts\Managers\Editor\InventoryEditors\Items\ItemStatEditor.cs" />
+    <Compile Include="Assets\Devdog\InventoryPro\Scripts\Managers\Editor\InventoryEditors\Items\Pickers\InventoryItemObjectPickerEditor.cs" />
+    <Compile Include="Assets\Devdog\InventoryPro\Scripts\Managers\Editor\InventoryEditors\Items\Pickers\ItemCategoryObjectPickerEditor.cs" />
+    <Compile Include="Assets\Devdog\InventoryPro\Scripts\Managers\Editor\InventoryEditors\Items\Pickers\ItemPropertyObjectPickerEditor.cs" />
+    <Compile Include="Assets\Devdog\InventoryPro\Scripts\Managers\Editor\InventoryEditors\Items\Pickers\ItemRarityObjectPickerEditor.cs" />
+    <Compile Include="Assets\Devdog\InventoryPro\Scripts\Managers\Editor\InventoryEditors\Items\StatDecoratorEditor.cs" />
+    <Compile Include="Assets\Devdog\InventoryPro\Scripts\Managers\Editor\InventoryEditors\Items\Windows\CreateNewItemEditor.cs" />
+    <Compile Include="Assets\Devdog\InventoryPro\Scripts\Managers\Editor\InventoryEditors\Items\Windows\ReplaceWithDialog.cs" />
+    <Compile Include="Assets\Devdog\InventoryPro\Scripts\Managers\Editor\InventoryEditors\Language\LanguageEditor.cs" />
+    <Compile Include="Assets\Devdog\InventoryPro\Scripts\Managers\Editor\InventoryEditors\Settings\SettingsEditor.cs" />
+    <Compile Include="Assets\Devdog\InventoryPro\Scripts\Managers\Editor\InventoryMainEditor.cs" />
+    <Compile Include="Assets\Devdog\InventoryPro\Scripts\Managers\Editor\InventoryManagerEditor.cs" />
+    <Compile Include="Assets\Devdog\InventoryPro\Scripts\Managers\Editor\InventoryScriptableObjectUtility.cs" />
+    <Compile Include="Assets\Devdog\InventoryPro\Scripts\Managers\Editor\ScriptableObjectEditorCrud.cs" />
+    <Compile Include="Assets\Devdog\InventoryPro\Scripts\Modules\Character\Editor\InventoryEquippableFieldEditor.cs" />
+    <Compile Include="Assets\Devdog\InventoryPro\Scripts\Modules\Crafting\Editor\CraftingTriggererEditor.cs" />
+    <Compile Include="Assets\Devdog\InventoryPro\Scripts\Modules\Crafting\Editor\CraftingWindowLayoutUIEditor.cs" />
+    <Compile Include="Assets\Devdog\InventoryPro\Scripts\Modules\Crafting\Editor\CraftingWindowStandardUIEditor.cs" />
+    <Compile Include="Assets\Devdog\InventoryPro\Scripts\Modules\ItemFilters\Editor\InventoryItemFiltersEditor.cs" />
+    <Compile Include="Assets\Devdog\InventoryPro\Scripts\Modules\ItemFilters\Editor\ItemFilterEditor.cs" />
+    <Compile Include="Assets\Devdog\InventoryPro\Scripts\Modules\ItemGenerators\Editor\InventoryItemContainerGeneratorEditor.cs" />
+    <Compile Include="Assets\Devdog\InventoryPro\Scripts\Modules\Player\Editor\InventoryPlayerBaseEditor.cs" />
+    <Compile Include="Assets\Devdog\InventoryPro\Scripts\Modules\Player\Editor\InventoryPlayerEditor.cs" />
+    <Compile Include="Assets\Devdog\InventoryPro\Scripts\Modules\Player\Editor\InventoryPlayerSpawnerEditor.cs" />
+    <Compile Include="Assets\Devdog\InventoryPro\Scripts\Modules\Serialization\Editor\PlayerPrefsCollectionSaverLoaderEditor.cs" />
+    <Compile Include="Assets\Devdog\InventoryPro\Scripts\Modules\Triggers\Editor\LootableObjectEditor.cs" />
+    <Compile Include="Assets\Devdog\InventoryPro\Scripts\Modules\Triggers\Editor\VendorTriggerEditor.cs" />
+    <Compile Include="Assets\Devdog\InventoryPro\Scripts\Other\Editor\Helpers\CustomOverrideProperty.cs" />
+    <Compile Include="Assets\Devdog\InventoryPro\Scripts\Other\Editor\InventoryEditorBase.cs" />
+    <Compile Include="Assets\Devdog\InventoryPro\Scripts\Other\Editor\Utilities\InventoryEditorUtility.cs" />
+    <Compile Include="Assets\Devdog\InventoryPro\Scripts\UI\SlotUI\Editor\InventoryUIItemWrapperEditor.cs" />
+    <Compile Include="Assets\Dialogue System\Scripts\Editor\Converters\AbstractConverterWindow.cs" />
+    <Compile Include="Assets\Dialogue System\Scripts\Editor\Converters\CSVConverterWindow.cs" />
+    <Compile Include="Assets\Dialogue System\Scripts\Editor\Converters\ConverterWindowTemplate.cs" />
+    <Compile Include="Assets\Dialogue System\Scripts\Editor\Custom Field Types\CustomFieldType_SceneType.cs" />
+    <Compile Include="Assets\Dialogue System\Scripts\Editor\Custom Field Types\CustomFieldType_TemplateType.cs" />
+    <Compile Include="Assets\Dialogue System\Scripts\Editor\Inspectors\DialogueSystemControllerEditor.cs" />
+    <Compile Include="Assets\Dialogue System\Scripts\Editor\Wizards\DialogueManagerWizard.cs" />
+    <Compile Include="Assets\Dialogue System\Scripts\Editor\Wizards\NPCSetupWizard.cs" />
+    <Compile Include="Assets\Dialogue System\Scripts\Editor\Wizards\PlayerSetupWizard.cs" />
+    <Compile Include="Assets\Dialogue System\Scripts\Editor\Wizards\WelcomeWindow.cs" />
+    <Compile Include="Assets\Dialogue System\Scripts\Supplemental\Utility\Editor\SupplementalMenuItems.cs" />
+    <Compile Include="Assets\TutorialInfo\Scripts\Editor\TutorialInfoEditor.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Devdog\General.xml" />
+    <None Include="Assets\Devdog\InventoryPro\Config.xml" />
+    <None Include="Assets\Devdog\InventoryPro\Demos\Assets\UI\Shaders\SpriteShader.shader" />
+    <None Include="Assets\Devdog\InventoryPro\README.txt" />
+    <None Include="Assets\Devdog\InventoryPro\Scripts\Diagrams\ClassDiagram1.cd" />
+    <None Include="Assets\Devdog\InventoryPro\Scripts\Diagrams\InventorySystem.cd" />
+    <None Include="Assets\Devdog\InventoryPro\Scripts\Diagrams\UIItemWrappers.cd" />
+    <None Include="Assets\Devdog\InventoryPro\Standard Assets\Cameras\CameraGuidelines.txt" />
+    <None Include="Assets\Dialogue System\DLLs\_README.txt" />
+    <None Include="Assets\Dialogue System\Documentation\_README.txt" />
+    <None Include="Assets\Dialogue System\Examples\Art\Portraits\_README.txt" />
+    <None Include="Assets\Dialogue System\Examples\Art\Sounds\_README.txt" />
+    <None Include="Assets\Dialogue System\Examples\Art\_README.txt" />
+    <None Include="Assets\Dialogue System\Examples\Bark Example\Bark Conversation\_README.txt" />
+    <None Include="Assets\Dialogue System\Examples\Bark Example\Bark Example.xml" />
+    <None Include="Assets\Dialogue System\Examples\Bark Example\Three NPCs Bark\Three NPCs Bark.xml" />
+    <None Include="Assets\Dialogue System\Examples\Bark Example\Three NPCs Bark\_README.txt" />
+    <None Include="Assets\Dialogue System\Examples\Bark Example\_README.txt" />
+    <None Include="Assets\Dialogue System\Examples\Camera Angle Studio\_README.txt" />
+    <None Include="Assets\Dialogue System\Examples\Feature Demo\Articy Feature Demo\Articy Feature Demo.xml" />
+    <None Include="Assets\Dialogue System\Examples\Feature Demo\Dialogue Database\Feature Demo.xml" />
+    <None Include="Assets\Dialogue System\Examples\Feature Demo\Feature Demo with Continue Button\_README.txt" />
+    <None Include="Assets\Dialogue System\Examples\Feature Demo\Menu Text Demo\Feature Demo With Menu Text.xml" />
+    <None Include="Assets\Dialogue System\Examples\Feature Demo\Menu Text Demo\_README.txt" />
+    <None Include="Assets\Dialogue System\Examples\Feature Demo\Multiple Database Example\_README.txt" />
+    <None Include="Assets\Dialogue System\Examples\Feature Demo\Text Input Example\_README.txt" />
+    <None Include="Assets\Dialogue System\Examples\Feature Demo\_README.txt" />
+    <None Include="Assets\Dialogue System\Examples\Lua Example\_README.txt" />
+    <None Include="Assets\Dialogue System\Examples\Mobile Test\_README.txt" />
+    <None Include="Assets\Dialogue System\Examples\Quest Example\_README.txt" />
+    <None Include="Assets\Dialogue System\Examples\Quick Start\Quick Start.xml" />
+    <None Include="Assets\Dialogue System\Examples\Quick Start\_README.txt" />
+    <None Include="Assets\Dialogue System\Examples\Save Load Example\_README_FIRST_IMPORTANT!.txt" />
+    <None Include="Assets\Dialogue System\Examples\Sequence Example\_README.txt" />
+    <None Include="Assets\Dialogue System\Examples\Unity UI Examples\Animated Portrait Example\Private Hart Animated Portrait\sprites_credits.txt" />
+    <None Include="Assets\Dialogue System\Examples\Unity UI Examples\_README.txt" />
+    <None Include="Assets\Dialogue System\Examples\_README.txt" />
+    <None Include="Assets\Dialogue System\Prefabs\Legacy Unity GUI Prefabs\Circle\Textures\_README.txt" />
+    <None Include="Assets\Dialogue System\Prefabs\Legacy Unity GUI Prefabs\Computer\Bitwise Font\!license.txt" />
+    <None Include="Assets\Dialogue System\Prefabs\Legacy Unity GUI Prefabs\Computer\Typing.txt" />
+    <None Include="Assets\Dialogue System\Prefabs\Legacy Unity GUI Prefabs\Necromancer\Necromancer GUI\Kingthings.txt" />
+    <None Include="Assets\Dialogue System\Prefabs\Legacy Unity GUI Prefabs\Necromancer\Necromancer GUI\Readme.txt" />
+    <None Include="Assets\Dialogue System\Prefabs\Legacy Unity GUI Prefabs\Necromancer\_README.txt" />
+    <None Include="Assets\Dialogue System\Prefabs\Legacy Unity GUI Prefabs\Shared Audio\_README.txt" />
+    <None Include="Assets\Dialogue System\Prefabs\Legacy Unity GUI Prefabs\Shared Fonts\Orbitron\SIL Open Font License.txt" />
+    <None Include="Assets\Dialogue System\Prefabs\Legacy Unity GUI Prefabs\Shared Textures\_README.txt" />
+    <None Include="Assets\Dialogue System\Prefabs\Legacy Unity GUI Prefabs\Wheel\_README.txt" />
+    <None Include="Assets\Dialogue System\Prefabs\Legacy Unity GUI Prefabs\_README.txt" />
+    <None Include="Assets\Dialogue System\Prefabs\Unity UI Prefabs\Mobile\_IMPORTANT_README.txt" />
+    <None Include="Assets\Dialogue System\Prefabs\Unity UI Prefabs\Speech Bubble\_README.txt" />
+    <None Include="Assets\Dialogue System\Prefabs\Unity UI Prefabs\Unity UI Assets\_README.txt" />
+    <None Include="Assets\Dialogue System\Prefabs\Unity UI Prefabs\_README.txt" />
+    <None Include="Assets\Dialogue System\Prefabs\_README.txt" />
+    <None Include="Assets\Dialogue System\Prefabs\iOS\_README.txt" />
+    <None Include="Assets\Dialogue System\Prefabs\iOS\link.xml" />
+    <None Include="Assets\Dialogue System\Scripts\Shaders\LinesColoredBlended.shader" />
+    <None Include="Assets\Dialogue System\Scripts\Supplemental\UI\_README.txt" />
+    <None Include="Assets\Dialogue System\Scripts\Supplemental\Utility\_README.txt" />
+    <None Include="Assets\Dialogue System\Scripts\_README.txt" />
+    <None Include="Assets\Dialogue System\Third Party Support\_README.txt" />
+    <None Include="Assets\Dialogue System\_README.txt" />
+    <None Include="Assets\Fonts\license.txt" />
+    <None Include="Assets\Plugins\SpriteTile\Resources\Sprites-DefaultNonTransparent.shader" />
+    <None Include="Assets\Plugins\SpriteTile\Resources\Sprites-DiffuseNonTransparent.shader" />
+    <None Include="Assets\Resources\Sprites\UI\uipack_rpg_sheet.xml" />
+    <None Include="Assets\SpriteTile\Read before importing demos!.txt" />
+    <None Include="Assets\SpriteTile\SpriteTile changelog.txt" />
+    <None Include="Assets\SpriteTile\UPGRADE GUIDE!.txt" />
+    <None Include="Assets\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
+    <None Include="Assets\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />
+    <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\BlendModesOverlay.shader" />
+    <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\BlurEffectConeTaps.shader" />
+    <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\CameraMotionBlur.shader" />
+    <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\CameraMotionBlurDX11.shader" />
+    <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\ChromaticAberrationShader.shader" />
+    <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\ColorCorrection3DLut.shader" />
+    <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\ColorCorrectionCurves.shader" />
+    <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\ColorCorrectionCurvesSimple.shader" />
+    <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\ColorCorrectionEffect.shader" />
+    <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\ColorCorrectionSelective.shader" />
+    <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\Contrast Stretch\Adaptation.shader" />
+    <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\Contrast Stretch\Apply.shader" />
+    <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\Contrast Stretch\Luminance.shader" />
+    <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\Contrast Stretch\MinMaxReduction.shader" />
+    <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\ContrastComposite.shader" />
+    <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\ConvertDepth.shader" />
+    <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\CreaseApply.shader" />
+    <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\EdgeDetectNormals.shader" />
+    <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\FisheyeShader.shader" />
+    <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\GlobalFog.shader" />
+    <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\GrayscaleEffect.shader" />
+    <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\MotionBlur.shader" />
+    <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\MotionBlurClear.shader" />
+    <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\NoiseAndGrain.shader" />
+    <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\NoiseAndGrainDX11.shader" />
+    <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\NoiseEffectShaderRGB.shader" />
+    <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\NoiseEffectShaderYUV.shader" />
+    <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\PrepareSunShaftsBlur.shader" />
+    <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\RadialBlur.shader" />
+    <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\SSAOShader.shader" />
+    <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\ScreenSpaceAmbientObscurance.shader" />
+    <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\ScreenSpaceRaytrace.cginc" />
+    <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\SepiaToneEffect.shader" />
+    <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\ShowAlphaChannel.shader" />
+    <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\SimpleClear.shader" />
+    <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\SunShaftsComposite.shader" />
+    <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\Tonemapper.shader" />
+    <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\TwirlEffect.shader" />
+    <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\VignettingShader.shader" />
+    <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\VortexEffect.shader" />
+    <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_Antialiasing\DLAA.shader" />
+    <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_Antialiasing\FXAA2.shader" />
+    <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_Antialiasing\FXAA3Console.shader" />
+    <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_Antialiasing\FXAAPreset2.shader" />
+    <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_Antialiasing\FXAAPreset3.shader" />
+    <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_Antialiasing\NFAA.shader" />
+    <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_Antialiasing\SSAA.shader" />
+    <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\Blend.shader" />
+    <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BlendForBloom.shader" />
+    <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BlendOneOne.shader" />
+    <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BlurAndFlares.shader" />
+    <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BrightPassFilter.shader" />
+    <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BrightPassFilter2.shader" />
+    <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\LensFlareCreate.shader" />
+    <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\MobileBloom.shader" />
+    <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\MobileBlur.shader" />
+    <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\MultiPassHollywoodFlares.shader" />
+    <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\SeparableBlurPlus.shader" />
+    <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\VignetteShader.shader" />
+    <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_DepthOfField\Bokeh34.shader" />
+    <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_DepthOfField\DepthOfField34.shader" />
+    <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_DepthOfField\DepthOfFieldDX11.shader" />
+    <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_DepthOfField\DepthOfFieldScatter.shader" />
+    <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_DepthOfField\SeparableBlur.shader" />
+    <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_DepthOfField\SeparableWeightedBlurDof34.shader" />
+    <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_DepthOfField\TiltShiftHdrLensBlur.shader" />
+    <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\frag_ao.cginc" />
+    <None Include="Assets\Standard Assets\Effects\Projectors\Guidelines.txt" />
+    <None Include="Assets\Standard Assets\Effects\Projectors\Shaders\ProjectorLight.shader" />
+    <None Include="Assets\Standard Assets\Effects\Projectors\Shaders\ProjectorMultiply.shader" />
+    <None Include="Assets\Standard Assets\Effects\TessellationShaders\Shaders\BumpedSpecularDisplacement.shader" />
+    <None Include="Assets\Standard Assets\Effects\TessellationShaders\Shaders\BumpedSpecularSmooth.shader" />
+    <None Include="Assets\Standard Assets\Effects\ToonShading\Shaders\ToonBasic.shader" />
+    <None Include="Assets\Standard Assets\Effects\ToonShading\Shaders\ToonBasicOutline.shader" />
+    <None Include="Assets\Standard Assets\Effects\ToonShading\Shaders\ToonLit.shader" />
+    <None Include="Assets\Standard Assets\Effects\ToonShading\Shaders\ToonLitOutline.shader" />
+    <None Include="Assets\Standard Assets\Fonts\OpenSans\License!.txt" />
+    <None Include="Assets\Standard Assets\ParticleSystems\ParticleSystemsGuidelines.txt" />
+    <None Include="Assets\Standard Assets\ParticleSystems\Shaders\PriorityParticleAdd.shader" />
+    <None Include="Assets\Standard Assets\ParticleSystems\Shaders\PriorityParticleAddSoft.shader" />
+    <None Include="Assets\Standard Assets\ParticleSystems\Shaders\PriorityParticleAlpha.shader" />
+    <None Include="Assets\TutorialInfo\Fonts\LICENSE.txt" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="GenerateTargetFrameworkMonikerAttribute" />
+</Project>
