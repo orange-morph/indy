@@ -113,15 +113,9 @@ public class PlantBehaviour : MonoBehaviour {
 
         if (hovering && inRange && Input.GetKeyDown(KeyCode.E) )
         {
-            Debug.LogWarning("we are hovering and in range...");
-            // listen for the 'E' key to interact with it
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                // on interact -> interact behaviour (choppable or harvestable or fruiting) or whatever
-                Debug.LogWarning("Hello, we are in range of a palm tree, moused over and have also pressed the E key!");
-                AudioSource audio = gameObject.AddComponent<AudioSource>();
-                audio.PlayOneShot(chopSound);
-            }
+            // on interact -> interact behaviour (choppable or harvestable or fruiting) or whatever
+            Debug.LogWarning("Hello, we are in range of a palm tree, moused over and have also pressed the E key!");
+            Interact();
         }
 
 
@@ -131,6 +125,33 @@ public class PlantBehaviour : MonoBehaviour {
 
     }
 
+    protected void Interact()
+    {
+        AudioSource audio = gameObject.AddComponent<AudioSource>();
+        if (seed)
+        {
+            audio.PlayOneShot(seedPickup);
+        }
+        else if (sprout)
+        {
+            audio.PlayOneShot(sproutSound);
+        }
+        else if (juvenile)
+        {
+            audio.PlayOneShot(juvenileSound);
+        }
+        else
+        {
+            if (choppable)
+            {
+                audio.PlayOneShot(chopSound);
+            } else if (harvestable)
+            {
+                audio.PlayOneShot(harvestSound);
+            }
+            
+        }
+    }
 
 }
 
