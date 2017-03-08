@@ -39,6 +39,9 @@ public class PlantBehaviour : MonoBehaviour {
 
     private bool hovering;
     private bool inRange;
+    private Vector3 treeOriginalPosition;
+    private Transform treeTransform;
+    private IEnumerator coroutine;
 
     protected void Start()
     {
@@ -184,34 +187,79 @@ public class PlantBehaviour : MonoBehaviour {
         else
         {
             audio.PlayOneShot(chopSound);
-            // animate full chop
+            float clipLength = chopSound.length;
+            Debug.LogWarning("chopSound length is: "+chopSound.length.ToString());
+            coroutine = Shake(clipLength);
+            StartCoroutine(coroutine);
             switch (playerScript.direction)
             {
                 case "left":
-                    Debug.LogWarning("..facing left so animate harvest left..");
                     playerScript.changeState(6);
-                    while (audio.isPlaying)
-                    {
-                        Debug.LogWarning("the chop clip is playing");
-                    }
-                    //if (playerScript.)
-                    playerScript.changeState(0);
+                    Invoke("SetPlayerIdle", clipLength);
                     break;
                 case "right":
-                    Debug.LogWarning("..facing right so animate harvest right..");
                     playerScript.changeState(7);
+                    Invoke("SetPlayerIdle", clipLength);
                     break;
                 case "down":
-                    Debug.LogWarning("..facing down so animate harvest down..");
                     playerScript.changeState(6);
+                    Invoke("SetPlayerIdle", clipLength);
                     break;
                 default:
-                    Debug.LogWarning("..facing up so animate harvest up (default)..");
                     playerScript.changeState(6);
+                    Invoke("SetPlayerIdle", clipLength);
                     break;
             }
             
         }
+    }
+
+    protected void SetPlayerIdle()
+    {
+        if (!playerScript.moving)
+        {
+            playerScript.changeState(0);
+        } 
+    }
+
+
+    IEnumerator Shake(float duration)
+    {
+        // Animated 'shake' effect via TransformPositions over time..
+        yield return new WaitForSeconds(0.7f); // initial offset before applying shake
+        duration -= 0.7f;
+        Debug.LogWarning("About to shake the tree..");
+        for (int i = 0; i < duration; i++)
+        {
+            StartCoroutine("ShakeOnce");
+            yield return new WaitForSeconds(1);
+        }
+        yield return true;
+    }
+ 
+
+    IEnumerator ShakeOnce()
+    {
+        // use plant game object and get it's Transform vector (x,y,z) and store it - this is needed to restore to original at end of effect
+        treeTransform = plant.GetComponent<Transform>();
+        treeOriginalPosition = transform.localPosition;
+        Debug.LogWarning("original tree localPosition is: "+treeOriginalPosition.ToString());
+
+        float shakeFrames = 20; // number of frames to use for this animation
+        float shakeAmount = 0.10f; // the extremes of movement away from the original position
+        float slowDownRate = 0.002f; // the rate at which the shake movement lessens in severity over frames
+     
+        for (int i = 0; i < shakeFrames; i++)
+        {
+            Vector3 random = Random.insideUnitSphere * shakeAmount;
+            Debug.LogWarning("random new position: " + random);
+            treeTransform.localPosition = new Vector3(treeOriginalPosition.x + random.x, treeOriginalPosition.y + random.y, 0);
+            shakeAmount -= slowDownRate;
+            yield return new WaitForFixedUpdate();
+        }
+
+        treeTransform.localPosition = treeOriginalPosition;
+        yield return true;
     }
 
 }

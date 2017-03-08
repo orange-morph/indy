@@ -18,7 +18,7 @@ public class CompletePlayerController : MonoBehaviour {
 
     private Rigidbody2D rb2d;		//Store a reference to the Rigidbody2D component required to use 2D Physics.
 	private int count;				//Integer to store the number of pickups collected so far.
-    private bool moving;            //Whether or not the player is currently moving
+    public bool moving;            //Whether or not the player is currently moving
     private bool startedMoving;     //Whether or not the player just started moving
     private bool stoppedMoving;     //Whether or not the player just stopped moving
     public bool movingLeft;         //Whether or not the player is currently moving left

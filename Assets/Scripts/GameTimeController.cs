@@ -93,7 +93,8 @@ public class GameTimeController : MonoBehaviour
         _lastSecondsSinceStart = 0;
         _seconds = 0; // start seconds at zero
         _minutes = 0; // start minutes at zero
-        _hours = 6; // start hour of day at 6am
+        _hours = 10; // start hour on day 1 at 10am
+        RenderSettings.ambientLight = sunriseEndColor;
         _days = 1; // start on day 1
         _months = 1; // start in month 1
         _years = 1; // start in year 1
