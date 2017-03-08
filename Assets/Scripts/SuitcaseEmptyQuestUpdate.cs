@@ -19,7 +19,8 @@ namespace Devdog.InventoryPro
         public InventoryPlayer player; // the player in relation to Inventory, collections, etc
         public GameObject suitcase; // reference to lootable item - suitcase: instance of lootui which will throw OnEmpty
         private LootableObject suitcaseLoot; // obtained as child component of suitcase GameObject parent
-        public QuestTrigger gotAllItemsTrigger; // reference to the DialogueSystem quest itself, set via the UI
+        public QuestTrigger foundSuitcaseTrigger; // DialogueSystem quest trigger, set via the UI
+        public QuestTrigger gotAllItemsTrigger; // DialogueSystem quest trigger, set via the UI
         public ConversationTrigger healThyselfConvo; // The next convo to be triggered after the find items quest.
         public QuestTrigger healThyselfQuestTrigger; // Quest trigger for healing head injury quest
         public QuestTrigger gotFirstAidKitTrigger; // Quest trigger for picking up the first aid kit
@@ -29,6 +30,7 @@ namespace Devdog.InventoryPro
         public GameObject bandage;
         private ConsumableInventoryItem bandageItem;  // bandage item
         public ItemCollectionBase playerInventoryCollection; // player inventory, used for item events (added item, used item)
+        private bool foundSuitcase;
         private bool gotAllItems;
         private bool usedBandage;
         public Camera mainCamera;
@@ -37,12 +39,13 @@ namespace Devdog.InventoryPro
 
         protected void Start()
         {
+            foundSuitcase = false;
             gotAllItems = false;
             usedBandage = false;
             suitcaseLoot = suitcase.GetComponent<LootableObject>();
             firstAidKitItem = firstAidKit.GetComponent<ItemPouchInventoryItem>();
             bandageItem = bandage.GetComponent<ConsumableInventoryItem>();
-            
+
             // Listen for the OnEmpty event on the instance of the InventoryManager loot object
             suitcaseLoot.OnEmpty += () =>
             {
@@ -78,6 +81,15 @@ namespace Devdog.InventoryPro
                     usedBandageTrigger.Fire(); // fire the quest completion trigger
                 }
             };
+        }
+
+        void OnCollisionEnter2D(Collision2D coll)
+        {
+            if (foundSuitcase == false )
+            {
+                foundSuitcase = true;
+                foundSuitcaseTrigger.Fire(); // fire the quest update trigger
+            }
         }
 
         IEnumerator Headache()

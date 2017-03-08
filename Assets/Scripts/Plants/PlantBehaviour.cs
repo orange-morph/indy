@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Devdog.General;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -32,23 +33,17 @@ public class PlantBehaviour : MonoBehaviour {
     public AudioClip sproutSound; // sound to be made if a sprout is harvested for this plant
     public AudioClip juvenileSound; // sound to be made if a juvenile is harvested for this plant
 
-
-    [Header("Plant Animations")]
-    public Animation choppingAnimation; // the animation to be used when this plant is chopped by the player
-    public Animation harvestingAnimation; // the animation to be used when this plant is harvested by the player
-    public Animation pickupAnimation; // the animation to be used when a seed / sprout is picked up by the player
-
     public BoxCollider2D plantCollider; // the collider object of the plant, for handling triggers
+    public GameObject playerObject; // the player object needed to determine facing direction for animations
+    public CompletePlayerController playerScript;
 
     private bool hovering;
     private bool inRange;
-    private bool interacting;
 
     protected void Start()
     {
         hovering = false;
         inRange = false;
-        interacting = false;
 
         // Initialise starting sprites, and adjust box collider
         if (seed)
@@ -98,7 +93,7 @@ public class PlantBehaviour : MonoBehaviour {
         inRange = false;   
     }
 
-    protected void FixedUpdate()
+    protected void Update()
     {
         if (hovering && inRange && Input.GetKeyDown(KeyCode.E) )
         {
@@ -116,29 +111,104 @@ public class PlantBehaviour : MonoBehaviour {
         AudioSource audio = gameObject.AddComponent<AudioSource>();
         if (seed)
         {
-            // animate pickup
             audio.PlayOneShot(seedPickup);
+            switch (playerScript.direction)
+            {
+                case "left":
+                    Debug.LogWarning("..facing left so animate harvest left..");
+                    playerScript.changeState(6);
+                    break;
+                case "right":
+                    Debug.LogWarning("..facing right so animate harvest right..");
+                    playerScript.changeState(7);
+                    break;
+                case "down":
+                    Debug.LogWarning("..facing down so animate harvest down..");
+                    playerScript.changeState(6);
+                    break;
+                default:
+                    Debug.LogWarning("..facing up so animate harvest up (default)..");
+                    playerScript.changeState(6);
+                    break;
+            }
         }
         else if (sprout)
         {
-            // animate pickup
             audio.PlayOneShot(sproutSound);
+            // animate pickup
+            switch (playerScript.direction)
+            {
+                case "left":
+                    Debug.LogWarning("..facing left so animate harvest left..");
+                    playerScript.changeState(6);
+                    break;
+                case "right":
+                    Debug.LogWarning("..facing right so animate harvest right..");
+                    playerScript.changeState(7);
+                    break;
+                case "down":
+                    Debug.LogWarning("..facing down so animate harvest down..");
+                    playerScript.changeState(6);
+                    break;
+                default:
+                    Debug.LogWarning("..facing up so animate harvest up (default)..");
+                    playerScript.changeState(6);
+                    break;
+            }
         }
         else if (juvenile)
         {
             // animate short chop or harvest
             audio.PlayOneShot(juvenileSound);
+            switch (playerScript.direction)
+            {
+                case "left":
+                    Debug.LogWarning("..facing left so animate harvest left..");
+                    playerScript.changeState(6);
+                    break;
+                case "right":
+                    Debug.LogWarning("..facing right so animate harvest right..");
+                    playerScript.changeState(7);
+                    break;
+                case "down":
+                    Debug.LogWarning("..facing down so animate harvest down..");
+                    playerScript.changeState(6);
+                    break;
+                default:
+                    Debug.LogWarning("..facing up so animate harvest up (default)..");
+                    playerScript.changeState(6);
+                    break;
+            }
+            
         }
         else
         {
-            if (choppable)
+            audio.PlayOneShot(chopSound);
+            // animate full chop
+            switch (playerScript.direction)
             {
-                // animate full chop
-                audio.PlayOneShot(chopSound);
-            } else if (harvestable)
-            {
-                // animate full harvest
-                audio.PlayOneShot(harvestSound);
+                case "left":
+                    Debug.LogWarning("..facing left so animate harvest left..");
+                    playerScript.changeState(6);
+                    while (audio.isPlaying)
+                    {
+                        Debug.LogWarning("the chop clip is playing");
+                    }
+                    //if (playerScript.)
+                    playerScript.changeState(0);
+                    break;
+                case "right":
+                    Debug.LogWarning("..facing right so animate harvest right..");
+                    playerScript.changeState(7);
+                    break;
+                case "down":
+                    Debug.LogWarning("..facing down so animate harvest down..");
+                    playerScript.changeState(6);
+                    break;
+                default:
+                    Debug.LogWarning("..facing up so animate harvest up (default)..");
+                    playerScript.changeState(6);
+                    break;
             }
             
         }

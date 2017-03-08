@@ -21,10 +21,11 @@ public class CompletePlayerController : MonoBehaviour {
     private bool moving;            //Whether or not the player is currently moving
     private bool startedMoving;     //Whether or not the player just started moving
     private bool stoppedMoving;     //Whether or not the player just stopped moving
-    private bool movingLeft;        //Whether or not the player is currently moving left
-    private bool movingRight;       //Whether or not the player is currently moving right
-    private bool movingUp;          //Whether or not the player is currently moving up
-    private bool movingDown;        //Whether or not the player is currently moving down
+    public bool movingLeft;         //Whether or not the player is currently moving left
+    public bool movingRight;        //Whether or not the player is currently moving right
+    public bool movingUp;           //Whether or not the player is currently moving up
+    public bool movingDown;         //Whether or not the player is currently moving down
+    public string direction; // last direction the character was facing in. defaults to 'down' (forward)
 
     Animator animator;
 
@@ -41,6 +42,8 @@ public class CompletePlayerController : MonoBehaviour {
     const int STATE_WALK_UP = 3;
     const int STATE_WALK_DOWN = 4;
     const int STATE_STAND_UP = 5;
+    const int STATE_CHOP_LEFT = 6;
+    const int STATE_CHOP_RIGHT = 7;
 
     //string _currentDirection = "left";
     int _currentAnimationState = STATE_STAND_UP;
@@ -50,6 +53,7 @@ public class CompletePlayerController : MonoBehaviour {
 	{
         //define the animator attached to the player
         animator = this.GetComponent<Animator>();
+        animator.enabled = true;
 
         //store reference to the Rigidbody2D component so that we can access it.
         rb2d = GetComponent<Rigidbody2D> ();
@@ -59,6 +63,8 @@ public class CompletePlayerController : MonoBehaviour {
 
 		//Initialze winText to a blank string at beginning.
 		winText.text = "";
+
+        direction = "down";
 
 	}
 
@@ -110,11 +116,13 @@ public class CompletePlayerController : MonoBehaviour {
             if (moveHorizontal < 0) // moving left
             {
                 movingLeft = true;
+                direction = "left";
                 changeState(STATE_WALK_LEFT);
             }
             if (moveHorizontal > 0) // moving right
             {
                 movingRight = true;
+                direction = "right";
                 changeState(STATE_WALK_RIGHT);
             }
             if (moveVertical > 0) // moving up
@@ -122,6 +130,7 @@ public class CompletePlayerController : MonoBehaviour {
                 movingUp = true;
                 if (! (movingLeft || movingRight)) // don't animate down if also moving left/right
                 {
+                    direction = "up";
                     changeState(STATE_WALK_UP);
                 }     
             }
@@ -130,6 +139,7 @@ public class CompletePlayerController : MonoBehaviour {
                 movingDown = true;
                 if (!(movingLeft || movingRight)) // don't animate down if also moving left/right
                 {
+                    direction = "down";
                     changeState(STATE_WALK_DOWN);
                 }
             }
@@ -159,7 +169,7 @@ public class CompletePlayerController : MonoBehaviour {
     //--------------------------------------
     // Change the players animation state
     //--------------------------------------
-    void changeState(int state)
+    public void changeState(int state)
     {
 
         if (_currentAnimationState == state) // do nothing if state isn't changing
@@ -184,8 +194,19 @@ public class CompletePlayerController : MonoBehaviour {
                 animator.SetInteger("state", STATE_WALK_DOWN);
                 break;
 
+            case STATE_STAND_UP:
+                animator.SetInteger("state", STATE_STAND_UP);
+                break;
+
             case STATE_IDLE:
                 animator.SetInteger("state", STATE_IDLE);
+                break;
+
+            case STATE_CHOP_LEFT:
+                animator.SetInteger("state", STATE_CHOP_LEFT);
+                break;
+            case STATE_CHOP_RIGHT:
+                animator.SetInteger("state", STATE_CHOP_RIGHT);
                 break;
         }
 
