@@ -36,14 +36,16 @@ public class CompletePlayerController : MonoBehaviour {
     //bool _isPlaying_walk_down = false;
    
     //animation states - the values in the animator conditions
-    const int STATE_IDLE = 0;
-    const int STATE_WALK_LEFT = 1;
-    const int STATE_WALK_RIGHT = 2;
-    const int STATE_WALK_UP = 3;
-    const int STATE_WALK_DOWN = 4;
-    const int STATE_STAND_UP = 5;
-    const int STATE_CHOP_LEFT = 6;
-    const int STATE_CHOP_RIGHT = 7;
+    public const int STATE_IDLE = 0;
+    public const int STATE_WALK_LEFT = 1;
+    public const int STATE_WALK_RIGHT = 2;
+    public const int STATE_WALK_UP = 3;
+    public const int STATE_WALK_DOWN = 4;
+    public const int STATE_STAND_UP = 5;
+    public const int STATE_CHOP_LEFT = 6;
+    public const int STATE_CHOP_RIGHT = 7;
+    public const int STATE_CHOP_UP = 8;
+    public const int STATE_CHOP_DOWN = 9;
 
     //string _currentDirection = "left";
     int _currentAnimationState = STATE_STAND_UP;
@@ -208,10 +210,52 @@ public class CompletePlayerController : MonoBehaviour {
             case STATE_CHOP_RIGHT:
                 animator.SetInteger("state", STATE_CHOP_RIGHT);
                 break;
+            case STATE_CHOP_UP:
+                animator.SetInteger("state", STATE_CHOP_UP);
+                break;
+            case STATE_CHOP_DOWN:
+                animator.SetInteger("state", STATE_CHOP_DOWN);
+                break;
         }
 
         _currentAnimationState = state;
     }
+
+    public void chop(float length)
+    {
+        switch (direction)
+        {
+            case "left":
+                changeState(STATE_CHOP_LEFT);
+                Invoke("SetPlayerIdle", length);
+                break;
+            case "right":
+                changeState(STATE_CHOP_RIGHT);
+                Invoke("SetPlayerIdle", length);
+                break;
+            case "up":
+                changeState(STATE_CHOP_UP);
+                Invoke("SetPlayerIdle", length);
+                break;
+            case "down":
+                changeState(STATE_CHOP_DOWN);
+                Invoke("SetPlayerIdle", length);
+                break;
+            default:
+                changeState(STATE_CHOP_LEFT);
+                Invoke("SetPlayerIdle", length);
+                break;
+        }
+    }
+
+    protected void SetPlayerIdle()
+    {
+        if (!moving)
+        {
+            changeState(STATE_IDLE);
+        }
+    }
+
 
     private bool anyMovementKeyDepressed()
     {

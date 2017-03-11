@@ -1,4 +1,5 @@
 ﻿using Devdog.General;
+using Devdog.InventoryPro;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,12 +14,15 @@ public class PlantBehaviour : MonoBehaviour {
     public Sprite sproutSprite; // sprout image for the plant
     public Sprite juvenileSprite; // juvenile (sapling/young) image for the plant
     public Sprite adultSprite; // adult image for the plant at full growth
+    public Sprite stumpSprite; // replacing tree with stump once harvested
 
     [Header("Initial plant state of growth")]
     public bool seed; // does it start as a seed?
     public bool sprout; // does it start as a sprout?
     public bool juvenile; // does it start as a juvenile?
     public bool adult; // does it start as an adult?
+    public bool newStump; // whether it is a stump
+    public bool oldStump;
 
     [Header("Plant Behaviours")]
     public bool seeding; // Should this plant randombly respawn / seed itself?
@@ -32,10 +36,16 @@ public class PlantBehaviour : MonoBehaviour {
     public AudioClip seedPickup; // sound to be made if seed is picked up
     public AudioClip sproutSound; // sound to be made if a sprout is harvested for this plant
     public AudioClip juvenileSound; // sound to be made if a juvenile is harvested for this plant
+    public AudioClip logSplit; 
 
     public BoxCollider2D plantCollider; // the collider object of the plant, for handling triggers
     public GameObject playerObject; // the player object needed to determine facing direction for animations
     public CompletePlayerController playerScript;
+
+    public UnusableInventoryItem log;
+
+    private SpriteRenderer treeSprite;
+    private BoxCollider2D treeCollider;
 
     private bool hovering;
     private bool inRange;
@@ -100,8 +110,6 @@ public class PlantBehaviour : MonoBehaviour {
     {
         if (hovering && inRange && Input.GetKeyDown(KeyCode.E) )
         {
-            // on interact -> interact behaviour (choppable or harvestable or fruiting) or whatever
-            Debug.LogWarning("Hello, we are in range of a palm tree, moused over and have also pressed the E key!");
             Interact();
         }
 
@@ -111,117 +119,36 @@ public class PlantBehaviour : MonoBehaviour {
 
     protected void Interact()
     {
-        AudioSource audio = gameObject.AddComponent<AudioSource>();
+        
         if (seed)
         {
-            audio.PlayOneShot(seedPickup);
-            switch (playerScript.direction)
-            {
-                case "left":
-                    Debug.LogWarning("..facing left so animate harvest left..");
-                    playerScript.changeState(6);
-                    break;
-                case "right":
-                    Debug.LogWarning("..facing right so animate harvest right..");
-                    playerScript.changeState(7);
-                    break;
-                case "down":
-                    Debug.LogWarning("..facing down so animate harvest down..");
-                    playerScript.changeState(6);
-                    break;
-                default:
-                    Debug.LogWarning("..facing up so animate harvest up (default)..");
-                    playerScript.changeState(6);
-                    break;
-            }
+            //AnimateWithClip(seedPickup);
+            AnimateWithClip(chopSound);
         }
         else if (sprout)
         {
-            audio.PlayOneShot(sproutSound);
-            // animate pickup
-            switch (playerScript.direction)
-            {
-                case "left":
-                    Debug.LogWarning("..facing left so animate harvest left..");
-                    playerScript.changeState(6);
-                    break;
-                case "right":
-                    Debug.LogWarning("..facing right so animate harvest right..");
-                    playerScript.changeState(7);
-                    break;
-                case "down":
-                    Debug.LogWarning("..facing down so animate harvest down..");
-                    playerScript.changeState(6);
-                    break;
-                default:
-                    Debug.LogWarning("..facing up so animate harvest up (default)..");
-                    playerScript.changeState(6);
-                    break;
-            }
+            //AnimateWithClip(sproutSound);
+            AnimateWithClip(chopSound);
         }
         else if (juvenile)
         {
-            // animate short chop or harvest
-            audio.PlayOneShot(juvenileSound);
-            switch (playerScript.direction)
-            {
-                case "left":
-                    Debug.LogWarning("..facing left so animate harvest left..");
-                    playerScript.changeState(6);
-                    break;
-                case "right":
-                    Debug.LogWarning("..facing right so animate harvest right..");
-                    playerScript.changeState(7);
-                    break;
-                case "down":
-                    Debug.LogWarning("..facing down so animate harvest down..");
-                    playerScript.changeState(6);
-                    break;
-                default:
-                    Debug.LogWarning("..facing up so animate harvest up (default)..");
-                    playerScript.changeState(6);
-                    break;
-            }
-            
+            //AnimateWithClip(juvenileSound);
+            AnimateWithClip(chopSound);
         }
         else
         {
-            audio.PlayOneShot(chopSound);
-            float clipLength = chopSound.length;
-            Debug.LogWarning("chopSound length is: "+chopSound.length.ToString());
-            coroutine = Shake(clipLength);
-            StartCoroutine(coroutine);
-            switch (playerScript.direction)
-            {
-                case "left":
-                    playerScript.changeState(6);
-                    Invoke("SetPlayerIdle", clipLength);
-                    break;
-                case "right":
-                    playerScript.changeState(7);
-                    Invoke("SetPlayerIdle", clipLength);
-                    break;
-                case "down":
-                    playerScript.changeState(6);
-                    Invoke("SetPlayerIdle", clipLength);
-                    break;
-                default:
-                    playerScript.changeState(6);
-                    Invoke("SetPlayerIdle", clipLength);
-                    break;
-            }
-            
+            AnimateWithClip(chopSound);
         }
     }
 
-    protected void SetPlayerIdle()
+    protected void AnimateWithClip(AudioClip clip)
     {
-        if (!playerScript.moving)
-        {
-            playerScript.changeState(0);
-        } 
+        AudioSource audio = gameObject.AddComponent<AudioSource>();
+        audio.PlayOneShot(clip);
+        coroutine = Shake(clip.length);
+        StartCoroutine(coroutine);
+        playerScript.chop(clip.length);
     }
-
 
     IEnumerator Shake(float duration)
     {
@@ -232,6 +159,10 @@ public class PlantBehaviour : MonoBehaviour {
         for (int i = 0; i < duration; i++)
         {
             StartCoroutine("ShakeOnce");
+            if (i == (int)(duration)) // spawn logs on last second
+            {
+                SpawnLogs();
+            }
             yield return new WaitForSeconds(1);
         }
         yield return true;
@@ -257,9 +188,57 @@ public class PlantBehaviour : MonoBehaviour {
             shakeAmount -= slowDownRate;
             yield return new WaitForFixedUpdate();
         }
-
         treeTransform.localPosition = treeOriginalPosition;
         yield return true;
+    }
+
+    public void SpawnLogs()
+    {
+        
+        if (adult && !oldStump)
+        {
+            ReplaceWithStump();
+        }
+
+        // spawn several logs in random positions around the tree location
+        treeTransform = plant.GetComponent<Transform>();
+        treeOriginalPosition = transform.localPosition;
+
+        Debug.LogWarning("About to spawn logs");
+        AudioSource audio = gameObject.AddComponent<AudioSource>();
+        audio.PlayOneShot(logSplit);
+        for (int i = 0; i < 5; i++)
+        {
+            UnusableInventoryItem newLog = Instantiate(log);
+            Vector3 random = Random.insideUnitSphere * 2.0f; // getting a randomised vector 3 within a range limit
+            Debug.LogWarning("random new position: " + random);
+            newLog.GetComponent<Transform>().position = new Vector3(treeOriginalPosition.x + random.x, treeOriginalPosition.y + random.y, 0);
+            Debug.LogWarning("Created Log "+(i+1).ToString());
+        }
+        if (oldStump)
+        {
+            Destroy(plant, 0.25f);
+        }
+        else if (newStump)
+        {
+            oldStump = true;
+        }
+        
+    }
+
+    public void ReplaceWithStump()
+    {
+        treeTransform = plant.GetComponent<Transform>();
+        treeOriginalPosition = transform.localPosition;
+        treeTransform.position = new Vector3(treeOriginalPosition.x, treeOriginalPosition.y - 2.0f, 0);
+
+        treeCollider = plant.GetComponent<BoxCollider2D>();
+        treeCollider.offset = new Vector2(-0.01f, 0.01f);
+        treeCollider.size = new Vector2(0.12f, 0.1f);
+
+        treeSprite = plant.GetComponent<SpriteRenderer>();
+        treeSprite.sprite = stumpSprite;
+        newStump = true;
     }
 
 }
