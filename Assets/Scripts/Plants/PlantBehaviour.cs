@@ -55,6 +55,8 @@ public class PlantBehaviour : MonoBehaviour {
 
     protected void Start()
     {
+
+        playerScript = playerObject.GetComponent<CompletePlayerController>();
         hovering = false;
         inRange = false;
 
