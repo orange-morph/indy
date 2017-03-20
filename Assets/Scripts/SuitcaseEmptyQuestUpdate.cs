@@ -67,12 +67,10 @@ namespace Devdog.InventoryPro
             {
                 if (item.ID.Equals(firstAidKitItem.ID) && gotAllItems == true )
                 {
-                    Debug.LogWarning("The first aid kit has been opened by the player in their inventory!");
                     gotFirstAidKitTrigger.Fire(); // fire the quest completion trigger
                 }
                 if (item.ID.Equals(bandageItem.ID))
                 {
-                    Debug.LogWarning("The bandage has been used by the player in their inventory!");
                     chromatic_Vignette.chromaticAberration = 0;
                     chromatic_Vignette.enabled = false;
                     usedBandage = true;

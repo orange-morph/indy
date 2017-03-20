@@ -157,7 +157,6 @@ public class PlantBehaviour : MonoBehaviour {
         // Animated 'shake' effect via TransformPositions over time..
         yield return new WaitForSeconds(0.7f); // initial offset before applying shake
         duration -= 0.7f;
-        Debug.LogWarning("About to shake the tree..");
         for (int i = 0; i < duration; i++)
         {
             StartCoroutine("ShakeOnce");
@@ -176,8 +175,6 @@ public class PlantBehaviour : MonoBehaviour {
         // use plant game object and get it's Transform vector (x,y,z) and store it - this is needed to restore to original at end of effect
         treeTransform = plant.GetComponent<Transform>();
         treeOriginalPosition = transform.localPosition;
-        Debug.LogWarning("original tree localPosition is: "+treeOriginalPosition.ToString());
-
         float shakeFrames = 20; // number of frames to use for this animation
         float shakeAmount = 0.10f; // the extremes of movement away from the original position
         float slowDownRate = 0.002f; // the rate at which the shake movement lessens in severity over frames
@@ -185,7 +182,6 @@ public class PlantBehaviour : MonoBehaviour {
         for (int i = 0; i < shakeFrames; i++)
         {
             Vector3 random = Random.insideUnitSphere * shakeAmount;
-            Debug.LogWarning("random new position: " + random);
             treeTransform.localPosition = new Vector3(treeOriginalPosition.x + random.x, treeOriginalPosition.y + random.y, 0);
             shakeAmount -= slowDownRate;
             yield return new WaitForFixedUpdate();
@@ -205,17 +201,13 @@ public class PlantBehaviour : MonoBehaviour {
         // spawn several logs in random positions around the tree location
         treeTransform = plant.GetComponent<Transform>();
         treeOriginalPosition = transform.localPosition;
-
-        Debug.LogWarning("About to spawn logs");
         AudioSource audio = gameObject.AddComponent<AudioSource>();
         audio.PlayOneShot(logSplit);
         for (int i = 0; i < 5; i++)
         {
             UnusableInventoryItem newLog = Instantiate(log);
             Vector3 random = Random.insideUnitSphere * 2.0f; // getting a randomised vector 3 within a range limit
-            Debug.LogWarning("random new position: " + random);
             newLog.GetComponent<Transform>().position = new Vector3(treeOriginalPosition.x + random.x, treeOriginalPosition.y + random.y, 0);
-            Debug.LogWarning("Created Log "+(i+1).ToString());
         }
         if (oldStump)
         {

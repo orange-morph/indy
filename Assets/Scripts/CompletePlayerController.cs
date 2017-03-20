@@ -46,6 +46,10 @@ public class CompletePlayerController : MonoBehaviour {
     public const int STATE_CHOP_RIGHT = 7;
     public const int STATE_CHOP_UP = 8;
     public const int STATE_CHOP_DOWN = 9;
+    public const int STATE_PICKAXE_LEFT = 10;
+    public const int STATE_PICKAXE_RIGHT = 11;
+    public const int STATE_PICKAXE_UP = 12;
+    public const int STATE_PICKAXE_DOWN = 13;
 
     //string _currentDirection = "left";
     int _currentAnimationState = STATE_STAND_UP;
@@ -179,7 +183,6 @@ public class CompletePlayerController : MonoBehaviour {
 
         switch (state)
         {
-
             case STATE_WALK_LEFT:
                 animator.SetInteger("state", STATE_WALK_LEFT);
                 break;
@@ -216,6 +219,18 @@ public class CompletePlayerController : MonoBehaviour {
             case STATE_CHOP_DOWN:
                 animator.SetInteger("state", STATE_CHOP_DOWN);
                 break;
+            case STATE_PICKAXE_LEFT:
+                animator.SetInteger("state", STATE_PICKAXE_LEFT);
+                break;
+            case STATE_PICKAXE_RIGHT:
+                animator.SetInteger("state", STATE_PICKAXE_RIGHT);
+                break;
+            case STATE_PICKAXE_UP:
+                animator.SetInteger("state", STATE_PICKAXE_UP);
+                break;
+            case STATE_PICKAXE_DOWN:
+                animator.SetInteger("state", STATE_PICKAXE_DOWN);
+                break;
         }
 
         _currentAnimationState = state;
@@ -243,6 +258,33 @@ public class CompletePlayerController : MonoBehaviour {
                 break;
             default:
                 changeState(STATE_CHOP_LEFT);
+                Invoke("SetPlayerIdle", length);
+                break;
+        }
+    }
+
+    public void pickaxe(float length)
+    {
+        switch (direction)
+        {
+            case "left":
+                changeState(STATE_PICKAXE_LEFT);
+                Invoke("SetPlayerIdle", length);
+                break;
+            case "right":
+                changeState(STATE_PICKAXE_RIGHT);
+                Invoke("SetPlayerIdle", length);
+                break;
+            case "up":
+                changeState(STATE_PICKAXE_UP);
+                Invoke("SetPlayerIdle", length);
+                break;
+            case "down":
+                changeState(STATE_PICKAXE_DOWN);
+                Invoke("SetPlayerIdle", length);
+                break;
+            default:
+                changeState(STATE_PICKAXE_LEFT);
                 Invoke("SetPlayerIdle", length);
                 break;
         }
